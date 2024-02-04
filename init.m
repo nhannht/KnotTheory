@@ -49,7 +49,8 @@ KnotTheoryVersionString[] = StringJoin[
 ]
 
 KnotTheoryDirectory[] = (
-  File /. Flatten[FileInformation[ToFileName[#,"KnotTheory"]] & /@ ($Path /. "." -> Directory[])]
+  "AbsoluteFileName" /. Flatten[FileInformation[FileNameJoin[{#,"KnotTheory"}]] & /@ ($Path /. "." -> Directory[])]
+
 )
 
 (* might be dangerous if KnotTheoryDirectory[] is somehow incorrect! *)
@@ -58,10 +59,10 @@ If[!MemberQ[$Path, ParentDirectory[KnotTheoryDirectory[]]],
 ]
 
 (* try to ensure WikiLink` is available; add the internal copy to the $Path *)
-AppendTo[$Path, ToFileName[{KnotTheoryDirectory[], "WikiLink", "mathematica"}]]
+AppendTo[$Path, FileNameJoin[{KnotTheoryDirectory[], "WikiLink", "mathematica"}]]
 
 (* try to ensure QuantumGroups` is available; add the internal copy to the $Path *)
-AppendTo[$Path, ToFileName[{KnotTheoryDirectory[], "QuantumGroups"}]]
+AppendTo[$Path, FileNameJoin[{KnotTheoryDirectory[], "QuantumGroups"}]]
 
 KnotTheoryWelcomeMessage[] = StringJoin[
   "Loading KnotTheory` version of ",
@@ -259,7 +260,7 @@ PDStringSplit[S_String]:=ToExpression/@StringSplit[S,","]
 PD[S_String]:= If[StringFreeQ[S, "X"], PD[Knot[S]],
   PD@@((X@@PDStringSplit[#]&)/@
         StringCases[S, StringExpression[
-	  "X<sub>", x:ShortestMatch[__], "</sub>"
+	  "X<sub>", x:Shortest[__], "</sub>"
 	] :> x])
 ]
 
@@ -2756,8 +2757,8 @@ IfNotOne["1"]="";
 IfNotOne[x_String]:=x
 
 LaurentPolynomialTeXReplacementRule=
-    "\\frac{"~StringExpression~(numerator:ShortestMatch[__])~StringExpression~
-        "}{"~StringExpression~(denominator:ShortestMatch[__])~
+    "\\frac{"~StringExpression~(numerator:Shortest[__])~StringExpression~
+        "}{"~StringExpression~(denominator:Shortest[__])~
         StringExpression~"}"~
         StringExpression~(rest:("+"|"-"|EndOfString))\[RuleDelayed]
       IfNotOne[numerator] ~StringExpression~" "~StringExpression~
@@ -3642,19 +3643,19 @@ Kh[L_, opts___] := Kh[L, opts] = Module[
   ]
 ]
 
-JavaKhv1ClassPath[] := ToFileName[KnotTheoryDirectory[], "JavaKh-v1"]
+JavaKhv1ClassPath[] := FileNameJoin[{KnotTheoryDirectory[], "JavaKh-v1"}]
 
 JavaKhv2ClassPath[] := Module[{JavaKhDirectory, jarDirectory, classDirectory, pathCharacter}, 
-    JavaKhDirectory = ToFileName[KnotTheoryDirectory[], "JavaKh-v2"];
-    jarDirectory = ToFileName[JavaKhDirectory, "jars"];
-    classDirectory = ToFileName[JavaKhDirectory, "bin"];
+    JavaKhDirectory = FileNameJoin[{KnotTheoryDirectory[], "JavaKh-v2"}];
+    jarDirectory = FileNameJoin[{JavaKhDirectory, "jars"}];
+    classDirectory = FileNameJoin[{JavaKhDirectory, "bin"}];
     pathCharacter = If[$PathnameSeparator == "\\", ";", ":"];
     StringJoin[
         classDirectory, 
-        pathCharacter , ToFileName[jarDirectory, "commons-cli-1.0.jar"],
-        pathCharacter , ToFileName[jarDirectory, "commons-io-1.2.jar"],
-        pathCharacter , ToFileName[jarDirectory, "commons-logging-1.1.jar"],
-        pathCharacter , ToFileName[jarDirectory, "log4j-1.2.12.jar"]
+        pathCharacter , FileNameJoin[{jarDirectory, "commons-cli-1.0.jar"}],
+        pathCharacter , FileNameJoin[{jarDirectory, "commons-io-1.2.jar"}],
+        pathCharacter , FileNameJoin[{jarDirectory, "commons-logging-1.1.jar"}],
+        pathCharacter , FileNameJoin[{jarDirectory, "log4j-1.2.12.jar"}]
     ]
 ]
 
@@ -6460,7 +6461,7 @@ InstallLinKnots[symbol_]:=Module[{oldContextPath=$ContextPath},
       LinKnotDirectory[]=
         DirectoryName[
           File/.Flatten[
-              FileInformation[ToFileName[#,"LinKnots.m"]]&/@$Path]];
+              FileInformation[FileNameJoin[{#,"LinKnots.m"}]]&/@$Path]];
       (*Now clean up the $ContextPath again, removing as much as possible.*)
       $ContextPath=oldContextPath;
       (InstallLinKnots[s_]:=True);
@@ -6857,7 +6858,7 @@ HFKHat[ap_ArcPresentation] :=
      "The HFKHat program was written by Jean-Marie Droz in 2007 at the \
 University of Zurich, based on methods of Anna \
 Beliakova's arXiv:07050669."];
-    SetDirectory[ToFileName[{KnotTheoryDirectory[], "HFK-Zurich"}]];
+    SetDirectory[FileNameJoin[{KnotTheoryDirectory[], "HFK-Zurich"}]];
     f = OpenWrite["in", PageWidth -> Infinity];
     WriteString[f, 
       StringDrop[ToString[ap], StringLength["ArcPresentation"]]];
