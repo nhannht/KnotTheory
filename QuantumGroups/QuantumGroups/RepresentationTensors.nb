@@ -433,7 +433,7 @@ Cell[BoxData[
       RowBox[{"matrices", ",", 
        RowBox[{
         RowBox[{"{", 
-         RowBox[{"\[Lambda]", ",", "m_Matrix"}], "}"}], "\[RuleDelayed]", 
+         RowBox[{"\[Lambda]", ",", "m_Matrix"}], "}"}], ":>",
         "m"}]}], "]"}], "~", "Join", "~", 
      RowBox[{"{", 
       RowBox[{"ZeroesMatrix", "[", 
@@ -454,16 +454,16 @@ Cell[BoxData[
     RowBox[{
      RowBox[{"SameQ", "[", 
       RowBox[{"Codomain", "/@", 
-       RowBox[{"{", "t", "}"}]}], "]"}], "\[And]", 
+       RowBox[{"{", "t", "}"}]}], "]"}], "&&",
      RowBox[{"SameQ", "[", 
       RowBox[{"Domain", "/@", 
-       RowBox[{"{", "t", "}"}]}], "]"}], "\[And]", 
+       RowBox[{"{", "t", "}"}]}], "]"}], "&&",
      RowBox[{"SameQ", "[", 
       RowBox[{"CodomainBasis", "/@", 
-       RowBox[{"{", "t", "}"}]}], "]"}], "\[And]", 
+       RowBox[{"{", "t", "}"}]}], "]"}], "&&",
      RowBox[{"SameQ", "[", 
       RowBox[{"DomainBasis", "/@", 
-       RowBox[{"{", "t", "}"}]}], "]"}], "\[And]", 
+       RowBox[{"{", "t", "}"}]}], "]"}], "&&",
      RowBox[{"SameQ", "[", 
       RowBox[{"Algebra", "/@", 
        RowBox[{"{", "t", "}"}]}], "]"}]}], ")"}]}], ":=", 
@@ -949,14 +949,14 @@ Cell[BoxData[
    RowBox[{
     SubscriptBox["U", "a"], "\[CircleTimes]", 
     SubscriptBox["V", "b"], "\[CircleTimes]", 
-    SubscriptBox["W", "c"]}]}], "\[Rule]", 
+    SubscriptBox["W", "c"]}]}], "->",
   RowBox[{
    RowBox[{
     SubscriptBox["U", "a"], "\[CircleTimes]", 
     SubscriptBox[
      RowBox[{"(", 
       RowBox[{"V", "\[CircleTimes]", "W"}], ")"}], 
-     RowBox[{"b", "+", "c"}]]}], "\[Rule]", 
+     RowBox[{"b", "+", "c"}]]}], "->",
    RowBox[{
     RowBox[{
      SubscriptBox[
@@ -968,14 +968,14 @@ Cell[BoxData[
      RowBox[{
       SubscriptBox["U", "a"], "\[CircleTimes]", 
       SubscriptBox["V", "b"], "\[CircleTimes]", 
-      SubscriptBox["W", "c"]}]}], "\[Rule]", 
+      SubscriptBox["W", "c"]}]}], "->",
     RowBox[{
      RowBox[{
       SubscriptBox[
        RowBox[{"(", 
         RowBox[{"U", "\[CircleTimes]", "V"}], ")"}], 
        RowBox[{"a", "+", "b"}]], "\[CircleTimes]", 
-      SubscriptBox["W", "c"]}], "\[Rule]", 
+      SubscriptBox["W", "c"]}], "->",
      RowBox[{
       SubscriptBox[
        RowBox[{"(", 
@@ -1164,7 +1164,7 @@ Cell[BoxData[
     RowBox[{"CoordinateInclusion", "[", 
      RowBox[{"n_", ",", "p_List"}], "]"}], "/;", 
     RowBox[{
-     RowBox[{"Length", "[", "p", "]"}], "\[Equal]", "n"}]}], "]"}], ":=", 
+     RowBox[{"Length", "[", "p", "]"}], "==", "n"}]}], "]"}], ":=",
   RowBox[{"CoordinateInclusion", "[", 
    RowBox[{"n", ",", 
     RowBox[{"Ordering", "[", "p", "]"}]}], "]"}]}]], "Input",
@@ -1228,7 +1228,7 @@ Cell[BoxData[
    RowBox[{"Position", "[", 
     RowBox[{"a", ",", " ", "b", ",", " ", 
      RowBox[{"{", "1", "}"}], ",", "1", ",", 
-     RowBox[{"Heads", "\[Rule]", "False"}]}], "]"}], "\[LeftDoubleBracket]", 
+     RowBox[{"Heads", "->", "False"}]}], "]"}], "\[LeftDoubleBracket]",
    RowBox[{"1", ",", "1"}], "\[RightDoubleBracket]"}]}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.4202928575352707`*^9, 3.420292858706955*^9}, {
@@ -2031,7 +2031,7 @@ Cell[BoxData[
                  RowBox[{
                   RowBox[{"Irrep", "[", 
                    SubscriptBox["\[CapitalGamma]", "n"], "]"}], "[", 
-                  "\[Lambda]_", "]"}]}]}], ")"}]}], "\[RuleDelayed]", 
+                  "\[Lambda]_", "]"}]}]}], ")"}]}], ":>",
              RowBox[{"{", 
               RowBox[{"\[Lambda]", ",", 
                RowBox[{"Count", "[", 
@@ -2394,7 +2394,7 @@ Cell[BoxData[
 Cell[BoxData[
  RowBox[{"If", "[", 
   RowBox[{
-   RowBox[{"$VersionNumber", "\[GreaterEqual]", "6."}], ",", 
+   RowBox[{"$VersionNumber", ">=", "6."}], ",",
    "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"BlockMatrix", "[", 
@@ -2430,7 +2430,7 @@ Cell[BoxData[
          RowBox[{
           RowBox[{
           "permutation", "\[LeftDoubleBracket]", "j", 
-           "\[RightDoubleBracket]"}], "\[Equal]", "i"}], ",", 
+           "\[RightDoubleBracket]"}], "==", "i"}], ",",
          RowBox[{"identityMatrix", "[", 
           RowBox[{
           "blocksizes", "\[LeftDoubleBracket]", "i", 

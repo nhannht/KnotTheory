@@ -131,12 +131,12 @@ Cell[BoxData[
 Cell[BoxData[
     \(\(ExpandReducedPowers[\[CapitalGamma]_]\)[
         F_] := \(F /. \[IndentingNewLine]{ReducedPower[\(X\_i_\^+\), 
-                n_] \[RuleDelayed] 
+                n_] :>
               With[{d = \(CartanFactors[\[CapitalGamma]]\)\[LeftDoubleBracket]
                       i\[RightDoubleBracket]}, 
                 NonCommutativePower[\(X\_i\^+\), \
 n]\/\(qFactorial[n]\)[q\^d]], \[IndentingNewLine]ReducedPower[\(X\_i_\^-\), 
-                n_] \[RuleDelayed] 
+                n_] :>
               With[{d = \(CartanFactors[\[CapitalGamma]]\)\[LeftDoubleBracket]
                       i\[RightDoubleBracket]}, 
                 NonCommutativePower[\(X\_i\^-\), \
@@ -151,7 +151,7 @@ Cell[BoxData[
 Cell[BoxData[
     \(\(BraidAction[\[CapitalGamma]_]\)[{T\_i_}, \(X\_j_\^+\)] := \
 \(\(BraidAction[\[CapitalGamma]]\)[{T\_i}, \(X\_j\^+\)] = \
-\[IndentingNewLine]If[i \[Equal] j, \(-\(X\_i\^-\) ** K\_i\), 
+\[IndentingNewLine]If[i == j, \(-\(X\_i\^-\) ** K\_i\),
           With[{a = \(CartanMatrix[\[CapitalGamma]]\)\[LeftDoubleBracket]i, 
                   j\[RightDoubleBracket], 
               d = \(CartanFactors[\[CapitalGamma]]\)\[LeftDoubleBracket]
@@ -165,7 +165,7 @@ Cell[BoxData[
 Cell[BoxData[
     \(\(BraidAction[\[CapitalGamma]_]\)[{T\_i_}, \(X\_j_\^-\)] := \
 \(\(BraidAction[\[CapitalGamma]]\)[{T\_i}, \(X\_j\^-\)] = \
-\[IndentingNewLine]If[i \[Equal] j, \(-K\_i\^\(-1\) ** \(X\_i\^+\)\), 
+\[IndentingNewLine]If[i == j, \(-K\_i\^\(-1\) ** \(X\_i\^+\)\),
           With[{a = \(CartanMatrix[\[CapitalGamma]]\)\[LeftDoubleBracket]i, 
                   j\[RightDoubleBracket], 
               d = \(CartanFactors[\[CapitalGamma]]\)\[LeftDoubleBracket]
@@ -196,21 +196,21 @@ Cell[BoxData[
     \(OrderingRules[\[CapitalGamma]_] := \(OrderingRules[\[CapitalGamma]] = 
         With[{d = CartanFactors[\[CapitalGamma]], 
             a = CartanMatrix[\[CapitalGamma]]}, {\[IndentingNewLine]K\_i_ ** 
-                K\_i_\^\(-1\) \[RuleDelayed] \[ScriptOne], \
+                K\_i_\^\(-1\) :> \[ScriptOne], \
 \[IndentingNewLine]K\_i_\^\(-1\) ** 
-                K\_i_ \[RuleDelayed] \[ScriptOne], \[IndentingNewLine]Y___ ** 
-                  K\_i_\^n_.  ** K\_j_\^m_.  ** Z___ /; i > j \[RuleDelayed] 
+                K\_i_ :> \[ScriptOne], \[IndentingNewLine]Y___ **
+                  K\_i_\^n_.  ** K\_j_\^m_.  ** Z___ /; i > j :>
               Y ** K\_j\^m ** K\_i\^n ** Z, \[IndentingNewLine]\(X\_j_\^+\) ** 
-                K\_i_\^n_.  \[RuleDelayed] \(q\^\(\(-n\)\ d\
+                K\_i_\^n_.  :> \(q\^\(\(-n\)\ d\
 \[LeftDoubleBracket]i\[RightDoubleBracket] 
                       a\[LeftDoubleBracket]i, j\[RightDoubleBracket]\)\) 
                 K\_i\^n ** \(X\_j\^+\), \[IndentingNewLine]K\_i_\^n_.  ** \(X\
-\_j_\^-\) \[RuleDelayed] \(q\^\(\(-n\)\ d\[LeftDoubleBracket]
+\_j_\^-\) :> \(q\^\(\(-n\)\ d\[LeftDoubleBracket]
                         i\[RightDoubleBracket] 
                       a\[LeftDoubleBracket]i, 
                         j\[RightDoubleBracket]\)\) \(X\_j\^-\) ** 
                   K\_i\^n, \[IndentingNewLine]\(X\_i_\^+\) ** \(X\_j_\^-\) \
-\[RuleDelayed] \(X\_j\^-\) ** \(X\_i\^+\) + 
+:> \(X\_j\^-\) ** \(X\_i\^+\) +
                 DiscreteDelta[
                     i - j] \(K\_i - \
 K\_i\^\(-1\)\)\/\(q\^d\[LeftDoubleBracket]i\[RightDoubleBracket] - q\^\(-d\
@@ -233,14 +233,14 @@ Cell[BoxData[
 \[CapitalGamma]] = 
         With[{d = CartanFactors[\[CapitalGamma]], 
             a = CartanMatrix[\[CapitalGamma]]}, {Y___ ** \(X\_i_\^+\) ** \
-\(X\_j_\^+\) ** Z___ /; \((i < j \[And] 
-                    a\[LeftDoubleBracket]i, j\[RightDoubleBracket] \[Equal] 
-                      0)\) \[RuleDelayed] 
+\(X\_j_\^+\) ** Z___ /; \((i < j &&
+                    a\[LeftDoubleBracket]i, j\[RightDoubleBracket] ==
+                      0)\) :>
               Y ** \(X\_j\^+\) ** \(X\_i\^+\) ** 
                 Z, \[IndentingNewLine]Y___ ** \(X\_i_\^-\) ** \(X\_j_\^-\) ** 
-                  Z___ /; \((i < j \[And] 
-                    a\[LeftDoubleBracket]i, j\[RightDoubleBracket] \[Equal] 
-                      0)\) \[RuleDelayed] 
+                  Z___ /; \((i < j &&
+                    a\[LeftDoubleBracket]i, j\[RightDoubleBracket] ==
+                      0)\) :>
               Y ** \(X\_j\^-\) ** \(X\_i\^-\) ** Z}]\)\)], "Input",
   InitializationCell->True],
 
@@ -277,7 +277,7 @@ Cell[BoxData[
 
 Cell[BoxData[{
     \(\(ReorderQuantumMonomial[\[CapitalGamma]_]\)[Z_Plus] /; 
-        Length[Z] \[LessEqual] termThreshold := 
+        Length[Z] <= termThreshold :=
       CollectTerms[
         ReorderQuantumMonomial[\[CapitalGamma]] /@ 
           Z]\), "\[IndentingNewLine]", 
@@ -314,7 +314,7 @@ Cell[BoxData[
 
 Cell[BoxData[{
     \(\(BraidAction[\[CapitalGamma]_]\)[{word__}, Z_Plus] /; 
-        Length[Z] \[LessEqual] termThreshold := 
+        Length[Z] <= termThreshold :=
       CollectTerms[\(\(BraidAction[\[CapitalGamma]]\)[{word}, #] &\) /@ 
           Z]\), "\[IndentingNewLine]", 
     \(\(BraidAction[\[CapitalGamma]_]\)[{word__}, Z_Plus] /; 
@@ -357,9 +357,9 @@ Cell[BoxData[
       Module[{m = 
             CartanMatrix[\[CapitalGamma]] 
                 Transpose[
-                  CartanMatrix[\[CapitalGamma]]] /. {\(n_?# \[GreaterEqual] 
-                      4 &\) \[RuleDelayed] \[Infinity], 3 \[Rule] 6, 
-                2 \[Rule] 4, 1 \[Rule] 3, 0 \[Rule] 2}, 
+                  CartanMatrix[\[CapitalGamma]]] /. {\(n_?# >=
+                      4 &\) :> \[Infinity], 3 -> 6,
+                2 -> 4, 1 -> 3, 0 -> 2},
           w}, \[IndentingNewLine]w[i_, j_, n_] := 
           Take[{T\_i, T\_j, T\_i, T\_j, T\_i, T\_j}, n]; 
         DeleteCases[
@@ -367,7 +367,7 @@ Cell[BoxData[
               If[m\[LeftDoubleBracket]i, 
                     j\[RightDoubleBracket] < \[Infinity], 
                 w[i, j, 
-                    m\[LeftDoubleBracket]i, j\[RightDoubleBracket]] \[Equal] 
+                    m\[LeftDoubleBracket]i, j\[RightDoubleBracket]] ==
                   w[j, i, m\[LeftDoubleBracket]i, j\[RightDoubleBracket]], 
                 True], {i, 1, Rank[\[CapitalGamma]]}, {j, i, 
                 Rank[\[CapitalGamma]]}]], 
@@ -375,9 +375,9 @@ Cell[BoxData[
   InitializationCell->True],
 
 Cell[BoxData[
-    \(\(CheckBraidRelation[\[CapitalGamma]_]\)[word1_ \[Equal] word2_] := 
+    \(\(CheckBraidRelation[\[CapitalGamma]_]\)[word1_ == word2_] :=
       And @@ Simplify[\(\(BraidAction[\[CapitalGamma]]\)[
-                    word1, #] \[Equal] \(BraidAction[\[CapitalGamma]]\)[
+                    word1, #] == \(BraidAction[\[CapitalGamma]]\)[
                     word2, #] &\) /@ Generators[\[CapitalGamma]] //. 
             OrderingRules[\[CapitalGamma]]~Join~
               ExtraOrderingRules[\[CapitalGamma]]]\)], "Input",

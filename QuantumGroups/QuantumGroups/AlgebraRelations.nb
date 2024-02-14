@@ -125,7 +125,7 @@ Cell[BoxData[
             RowBox[{
              RowBox[{
               SubscriptBox["K", "i"], "**", 
-              SubscriptBox["K", "j"]}], "\[Equal]", 
+              SubscriptBox["K", "j"]}], "==",
              RowBox[{
               SubscriptBox["K", "j"], "**", 
               SubscriptBox["K", "i"]}]}], ",", 
@@ -142,7 +142,7 @@ Cell[BoxData[
               SubscriptBox["K", "i"], "**", 
               SuperscriptBox[
                SubscriptBox["K", "i"], 
-               RowBox[{"-", "1"}]]}], "\[Equal]", "\[ScriptOne]"}], ",", 
+               RowBox[{"-", "1"}]]}], "==", "\[ScriptOne]"}], ",",
             RowBox[{"{", 
              RowBox[{"i", ",", "1", ",", "n"}], "}"}]}], "]"}], ",", 
           "\[IndentingNewLine]", 
@@ -153,7 +153,7 @@ Cell[BoxData[
               SuperscriptBox[
                SubscriptBox["K", "i"], 
                RowBox[{"-", "1"}]], "**", 
-              SubscriptBox["K", "i"]}], "\[Equal]", "\[ScriptOne]"}], ",", 
+              SubscriptBox["K", "i"]}], "==", "\[ScriptOne]"}], ",",
             RowBox[{"{", 
              RowBox[{"i", ",", "1", ",", "n"}], "}"}]}], "]"}], ",", 
           "\[IndentingNewLine]", 
@@ -166,7 +166,7 @@ Cell[BoxData[
                SubscriptBox["X", "j"], "]"}], "**", 
               SuperscriptBox[
                SubscriptBox["K", "i"], 
-               RowBox[{"-", "1"}]]}], "\[Equal]", 
+               RowBox[{"-", "1"}]]}], "==",
              RowBox[{
               SuperscriptBox["q", 
                RowBox[{
@@ -191,7 +191,7 @@ Cell[BoxData[
                SubscriptBox["X", "j"], "]"}], "**", 
               SuperscriptBox[
                SubscriptBox["K", "i"], 
-               RowBox[{"-", "1"}]]}], "\[Equal]", 
+               RowBox[{"-", "1"}]]}], "==",
              RowBox[{
               SuperscriptBox["q", 
                RowBox[{
@@ -221,7 +221,7 @@ Cell[BoxData[
                RowBox[{"SuperMinus", "[", 
                 SubscriptBox["X", "j"], "]"}], "**", 
                RowBox[{"SuperPlus", "[", 
-                SubscriptBox["X", "i"], "]"}]}]}], "\[Equal]", 
+                SubscriptBox["X", "i"], "]"}]}]}], "==",
              RowBox[{
               RowBox[{"DiscreteDelta", "[", 
                RowBox[{"i", "-", "j"}], "]"}], 
@@ -247,7 +247,7 @@ Cell[BoxData[
              RowBox[{"j", ",", "1", ",", "n"}], "}"}]}], "]"}]}], 
          "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}], "]"}], "/.", 
        RowBox[{"{", 
-        RowBox[{"0", "\[Rule]", "\[ScriptZero]"}], "}"}]}], ",", "True"}], 
+        RowBox[{"0", "->", "\[ScriptZero]"}], "}"}]}], ",", "True"}],
      "]"}]}], "\[IndentingNewLine]", "]"}]}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.409852421212267*^9, 3.4098524743286448`*^9}, {
@@ -314,7 +314,7 @@ Cell[BoxData[
                  RowBox[{"1", "-", 
                   RowBox[{"cm", "\[LeftDoubleBracket]", 
                    RowBox[{"i", ",", "j"}], "\[RightDoubleBracket]"}]}]}], 
-                "}"}]}], "]"}], "\[Equal]", "\[ScriptZero]"}], ",", 
+                "}"}]}], "]"}], "==", "\[ScriptZero]"}], ",",
             RowBox[{"{", 
              RowBox[{"i", ",", "1", ",", "n"}], "}"}], ",", 
             RowBox[{"{", 
@@ -361,14 +361,14 @@ Cell[BoxData[
                  RowBox[{"1", "-", 
                   RowBox[{"cm", "\[LeftDoubleBracket]", 
                    RowBox[{"i", ",", "j"}], "\[RightDoubleBracket]"}]}]}], 
-                "}"}]}], "]"}], "\[Equal]", "\[ScriptZero]"}], ",", 
+                "}"}]}], "]"}], "==", "\[ScriptZero]"}], ",",
             RowBox[{"{", 
              RowBox[{"i", ",", "1", ",", "n"}], "}"}], ",", 
             RowBox[{"{", 
              RowBox[{"j", ",", "1", ",", "n"}], "}"}]}], "]"}]}], 
          "\[IndentingNewLine]", "]"}], "]"}], "/.", 
        RowBox[{"{", 
-        RowBox[{"0", "\[Rule]", "\[ScriptZero]"}], "}"}]}], ",", "True"}], 
+        RowBox[{"0", "->", "\[ScriptZero]"}], "}"}]}], ",", "True"}],
      "]"}]}], "\[IndentingNewLine]", "]"}]}]], "Input",
  CellChangeTimes->{{3.4139248423804264`*^9, 3.413924924673388*^9}}],
 
@@ -432,7 +432,7 @@ Cell[BoxData[
                   RowBox[{
                    RowBox[{"SuperPlus", "[", 
                     SubscriptBox["X", "i"], "]"}], ",", "r"}], "]"}]}]}]}], 
-              "\[Equal]", "\[ScriptZero]"}], ",", 
+              "==", "\[ScriptZero]"}], ",",
              RowBox[{"{", 
               RowBox[{"i", ",", "1", ",", "n"}], "}"}], ",", 
              RowBox[{"{", 
@@ -477,14 +477,14 @@ Cell[BoxData[
                   RowBox[{
                    RowBox[{"SuperMinus", "[", 
                     SubscriptBox["X", "i"], "]"}], ",", "r"}], "]"}]}]}]}], 
-              "\[Equal]", "\[ScriptZero]"}], ",", 
+              "==", "\[ScriptZero]"}], ",",
              RowBox[{"{", 
               RowBox[{"i", ",", "1", ",", "n"}], "}"}], ",", 
              RowBox[{"{", 
               RowBox[{"j", ",", "1", ",", "n"}], "}"}]}], "]"}]}], 
           "\[IndentingNewLine]", "]"}], "]"}], "/.", 
         RowBox[{"{", 
-         RowBox[{"0", "\[Rule]", "\[ScriptZero]"}], "}"}]}], ",", "True"}], 
+         RowBox[{"0", "->", "\[ScriptZero]"}], "}"}]}], ",", "True"}],
       "]"}]}], "\[IndentingNewLine]", "]"}]}], "*)"}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.409852482951043*^9, 3.4098525329829855`*^9}, {
@@ -511,7 +511,7 @@ Cell[BoxData[
      RowBox[{"{", 
       RowBox[{
        RowBox[{
-        RowBox[{"a_", "\[Equal]", "\[ScriptZero]"}], "\[RuleDelayed]", 
+        RowBox[{"a_", "==", "\[ScriptZero]"}], ":>",
         RowBox[{"ZeroMatrixQ", "[", 
          RowBox[{"Simplify", "[", 
           RowBox[{
@@ -521,7 +521,7 @@ Cell[BoxData[
            RowBox[{"V", ",", "\[Beta]", ",", "\[Lambda]"}], "]"}], "]"}], 
          "]"}]}], ",", 
        RowBox[{
-        RowBox[{"a_", "\[Equal]", "b_"}], "\[RuleDelayed]", 
+        RowBox[{"a_", "==", "b_"}], ":>",
         RowBox[{"ZeroMatrixQ", "[", 
          RowBox[{"Simplify", "[", 
           RowBox[{
@@ -545,7 +545,7 @@ Cell[BoxData[
      RowBox[{"{", 
       RowBox[{
        RowBox[{
-        RowBox[{"a_", "\[Equal]", "\[ScriptZero]"}], "\[RuleDelayed]", 
+        RowBox[{"a_", "==", "\[ScriptZero]"}], ":>",
         RowBox[{"ZeroMatrixQ", "[", 
          RowBox[{"Simplify", "[", 
           RowBox[{
@@ -555,7 +555,7 @@ Cell[BoxData[
            RowBox[{"V", ",", "\[Beta]", ",", "\[Lambda]"}], "]"}], "]"}], 
          "]"}]}], ",", 
        RowBox[{
-        RowBox[{"a_", "\[Equal]", "b_"}], "\[RuleDelayed]", 
+        RowBox[{"a_", "==", "b_"}], ":>",
         RowBox[{"ZeroMatrixQ", "[", 
          RowBox[{"Simplify", "[", 
           RowBox[{
@@ -580,7 +580,7 @@ Cell[BoxData[
       RowBox[{"{", 
        RowBox[{
         RowBox[{
-         RowBox[{"a_", "\[Equal]", "\[ScriptZero]"}], "\[RuleDelayed]", 
+         RowBox[{"a_", "==", "\[ScriptZero]"}], ":>",
          RowBox[{"ZeroMatrixQ", "[", 
           RowBox[{"Simplify", "[", 
            RowBox[{
@@ -590,7 +590,7 @@ Cell[BoxData[
             RowBox[{"V", ",", "\[Beta]", ",", "\[Lambda]"}], "]"}], "]"}], 
           "]"}]}], ",", 
         RowBox[{
-         RowBox[{"a_", "\[Equal]", "b_"}], "\[RuleDelayed]", 
+         RowBox[{"a_", "==", "b_"}], ":>",
          RowBox[{"ZeroMatrixQ", "[", 
           RowBox[{"Simplify", "[", 
            RowBox[{
@@ -689,7 +689,7 @@ InputAliases->{"intt" -> RowBox[{"\[Integral]",
        "\[Placeholder]", NotationBoxTag, TagStyle -> "NotationTemplateStyle"],
         ",", "\[Placeholder]"}], "]"}], "addia" -> 
   RowBox[{"AddInputAlias", "[", 
-     RowBox[{"\"\[Placeholder]\"", "\[Rule]", 
+     RowBox[{"\"\[Placeholder]\"", "->",
        TagBox[
        "\[Placeholder]", NotationBoxTag, TagStyle -> 
         "NotationTemplateStyle"]}], "]"}], "pattwraper" -> 
@@ -1854,18 +1854,18 @@ own options. This is particularly true of Input and Output.", "Text"],
          Cell[
           StyleData["StandardForm"], 
           InputAutoReplacements -> {
-           "->" -> "\[Rule]", ":>" -> "\[RuleDelayed]", "<=" -> 
-            "\[LessEqual]", ">=" -> "\[GreaterEqual]", "!=" -> "\[NotEqual]", 
-            "==" -> "\[Equal]", Inherited}, 
+           "->" -> "->", ":>" -> ":>", "<=" ->
+            "<=", ">=" -> ">=", "!=" -> "!=",
+            "==" -> "==", Inherited},
           "TwoByteSyntaxCharacterAutoReplacement" -> True, 
           LineSpacing -> {1.25, 0}, StyleMenuListing -> None, FontFamily -> 
           "Courier"], 
          Cell[
           StyleData["TraditionalForm"], 
           InputAutoReplacements -> {
-           "->" -> "\[Rule]", ":>" -> "\[RuleDelayed]", "<=" -> 
-            "\[LessEqual]", ">=" -> "\[GreaterEqual]", "!=" -> "\[NotEqual]", 
-            "==" -> "\[Equal]", Inherited}, 
+           "->" -> "->", ":>" -> ":>", "<=" ->
+            "<=", ">=" -> ">=", "!=" -> "!=",
+            "==" -> "==", Inherited},
           "TwoByteSyntaxCharacterAutoReplacement" -> True, 
           LineSpacing -> {1.25, 0}, SingleLetterItalics -> True, 
           TraditionalFunctionNotation -> True, DelimiterMatching -> None, 

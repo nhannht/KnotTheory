@@ -287,7 +287,7 @@ Cell[BoxData[
           StringCases[
             data, "\<A_\>" ~~ \(CullerKnotName[
                     K] ~~ \("\< :=\n\>" ~~ \(polynomial__ ~~ "\<;\n\>"\)\)\) \
-\[RuleDelayed] polynomial]; \[IndentingNewLine]If[Length[results] \[Equal] 0, 
+:> polynomial]; \[IndentingNewLine]If[Length[results] == 0,
           Return[$Failed]]; \[IndentingNewLine]ToExpression[
           results\[LeftDoubleBracket]1\[RightDoubleBracket], 
           StandardForm]\[IndentingNewLine]]\)], "Input"],

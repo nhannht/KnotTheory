@@ -72,7 +72,7 @@ LowerLittelmannPath[0,i_,m_]:=0
 LowerLittelmannPath[lp_,i_]:=LowerLittelmannPath[lp,i,1]
 
 
-VectorsPositivelyProportionalQ[v1_,v2_]:=Simplify[(v1.v2)^2-v1.v1 v2.v2]==0\[And]v1.v2>0
+VectorsPositivelyProportionalQ[v1_,v2_]:=Simplify[(v1.v2)^2-v1.v1 v2.v2]==0&&v1.v2>0
 
 
 SimplifyLittelmannPath[LittelmannPath[\[CapitalGamma]_][l_List]]:=LittelmannPath[\[CapitalGamma]][Plus@@#&/@Split[DeleteCases[l,ZeroVector[Rank[\[CapitalGamma]]]],VectorsPositivelyProportionalQ]]

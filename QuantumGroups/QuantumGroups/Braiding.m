@@ -135,7 +135,7 @@ result
 CheckBraidingData[m:{__?MatrixQ}]:=And@@Table[ZeroMatrixQ[Matrix[Simplify[m[[i]].m[[i+1]].m[[i]]-m[[i+1]].m[[i]].m[[i+1]]]]],{i,1,Length[m]-1}]
 
 
-CheckBraidingData[{m:{__?MatrixQ},i:{__?MatrixQ}}]:=(Length[m]==Length[i])\[And](And@@Table[ZeroMatrixQ[Matrix[Simplify[m[[k]].i[[k]]-IdentityMatrix[Length[m[[k]]]]]]],{k,1,Length[m]}])\[And]CheckBraidingData[m]
+CheckBraidingData[{m:{__?MatrixQ},i:{__?MatrixQ}}]:=(Length[m]==Length[i])&&(And@@Table[ZeroMatrixQ[Matrix[Simplify[m[[k]].i[[k]]-IdentityMatrix[Length[m[[k]]]]]]],{k,1,Length[m]}])&&CheckBraidingData[m]
 
 
 CheckBraidingData[d:{{_,{{__?MatrixQ},{__?MatrixQ}}}..}]:=And@@(CheckBraidingData/@(Last/@d))

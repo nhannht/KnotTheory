@@ -72,38 +72,38 @@ Begin["`Private`"];
 
 namePattern=
     "<!-- Invariant name -->"~~WhitespaceCharacter...~~
-          "<td>"~~n:ShortestMatch[__]~~"</td>"\[RuleDelayed]n;
+          "<td>"~~n:ShortestMatch[__]~~"</td>":>n;
 
 linePattern=
     "<!-- "~~t:(WordCharacter..)~~
           " ="~~ShortestMatch[__]~~
-              "<td>"~~v:ShortestMatch[___]~~"</td>"\[RuleDelayed](t\[Rule]v);
+              "<td>"~~v:ShortestMatch[___]~~"</td>":>(t->v);
 
 expressionTags={"ReadWiki","ReadLivingston","KnotTheory","KnotTheorySetter"};
 
 ConstructInvariantRule[S_String]:=
   Module[{names=StringCases[S,namePattern],saveContext,rule},
-    If[Length[names]\[NotEqual]1,Return[$Failed]];
+    If[Length[names]!=1,Return[$Failed]];
     saveContext=$Context;
     $Context="Global`";
-    rule=(names\[LeftDoubleBracket]1\[RightDoubleBracket]\[Rule]
+    rule=(names\[LeftDoubleBracket]1\[RightDoubleBracket]->
             DeleteCases[
-              StringCases[S,linePattern],_\[Rule]
-                ""]/.(t_String?(MemberQ[expressionTags,#]&)\[Rule]
-                s_String)\[RuleDelayed](t\[Rule]ToExpression[s]));
+              StringCases[S,linePattern],_->
+                ""]/.(t_String?(MemberQ[expressionTags,#]&)->
+                s_String):>(t->ToExpression[s]));
     $Context=saveContext;
     rule
     ]
 
 QuantumInvariantRules={
-    (S_String/;StringMatchQ[S,"QuantumInvariant"~~__])\[RuleDelayed]
+    (S_String/;StringMatchQ[S,"QuantumInvariant"~~__]):>
       Module[{\[CapitalGamma]0,\[Lambda]0,cases},
         cases=
           StringCases[
             S,("QuantumInvariant/"~~\[CapitalGamma]:(LetterCharacter)~~
                     n:(DigitCharacter..)~~
-                      "/"~~\[Mu]__)\[RuleDelayed]{\[CapitalGamma],n,\[Mu]}];
-        If[Length[cases]\[Equal]0,{},
+                      "/"~~\[Mu]__):>{\[CapitalGamma],n,\[Mu]}];
+        If[Length[cases]==0,{},
           With[{\[CapitalGamma]=
                 Subscript[
                   globalToExpression[
@@ -115,12 +115,12 @@ QuantumInvariantRules={
                 ToExpression[
                   "{"<>cases\[LeftDoubleBracket]1,3\[RightDoubleBracket]<>
                     "}"]},
-            {"WikiPage"\[Rule]S,
-              "KnotTheorySetter"\[Rule]Function[{K,p},
+            {"WikiPage"->S,
+              "KnotTheorySetter"->Function[{K,p},
                   KnotTheory`QuantumKnotInvariants`QuantumKnotInvariant[\
 \[CapitalGamma],QuantumGroups`Irrep[\[CapitalGamma]][\[Lambda]]][K]=
                         Function[{q},p];&],
-              "KnotTheory"\[Rule]Function[{K},
+              "KnotTheory"->Function[{K},
                   KnotTheory`QuantumKnotInvariants`QuantumKnotInvariant[\
 \[CapitalGamma],QuantumGroups`Irrep[\[CapitalGamma]][\[Lambda]]][K][
                     Global`q]]
@@ -139,7 +139,7 @@ LoadInvariantRules["Invariant_Definition_Table"];
 
 
 
-InvariantTags[rules_]:=Union@@(rules/.(_\[Rule]L_List)\[RuleDelayed]First/@L)
+InvariantTags[rules_]:=Union@@(rules/.(_->L_List):>First/@L)
 
 TableHeader[rules_]:=
   "<tr>\n<th>Invariant name</th>\n"<>StringJoin@@("   <th>"<>#<>"</th>\n"&/@
@@ -152,7 +152,7 @@ TableRow[rules_,i_]:=
       1\[RightDoubleBracket]<>"</td>\n"<>
     StringJoin@@("<!-- "<>#<>" ="<>whitespaces[20-StringLength[#]]<>"--> <td>"<>
               ToString[#/.rules\[LeftDoubleBracket]i,
-                      2\[RightDoubleBracket]/.{#\[Rule]""}]<>"</td>\n"&/@
+                      2\[RightDoubleBracket]/.{#->""}]<>"</td>\n"&/@
           InvariantTags[rules])<>"</tr>\n"
 
 InvariantDefinitionTable[rules_]:=
@@ -164,7 +164,7 @@ InvariantDefinitionTable[rules_]:=
 
 FromWikiString[S_String]/;StringMatchQ[S,"<math>"~~__~~"</math>"]:=
   FixTeXFormExpression[
-    ToExpression[StringReplace[S,"<math>"~~X__~~"</math>"\[RuleDelayed]X],
+    ToExpression[StringReplace[S,"<math>"~~X__~~"</math>":>X],
       TeXForm]]
 
 Clear[FixTeXFormExpression]
@@ -172,7 +172,7 @@ FixTeXFormExpression[Times[a_,b__][c__]]:=Times[a,b,c]
 FixTeXFormExpression[x_]:=x
 
 FromWikiString[S_String]/;StringMatchQ[S,"<nowiki>"~~__~~"</nowiki>"]:=
-  StringReplace[S,"<nowiki>"~~X__~~"</nowiki>"\[RuleDelayed]X]
+  StringReplace[S,"<nowiki>"~~X__~~"</nowiki>":>X]
 
 FromWikiString[S_String]/;StringMatchQ[S,"http://"~~__]:=S
 
@@ -186,7 +186,7 @@ FromKnotInfoString[S_String]:=S
 
 FromKnotInfoString["infty"]=\[Infinity];
 
-InvariantNames[L_List]:=Cases[L,(S_String\[Rule]_List)\[RuleDelayed]S]
+InvariantNames[L_List]:=Cases[L,(S_String->_List):>S]
 
 InvariantRule[I_String]:=
   InvariantRule[I]=Module[{rule},rule=I/.AllInvariants;
@@ -195,19 +195,19 @@ InvariantRule[I_String]:=
 
 RetrieveInvariant[I_String,K_,"KnotTheory"]:=
   Module[{rule=InvariantRule[I],KnotTheory},
-    If[rule\[Equal]$Failed,Return[$Failed]];
+    If[rule==$Failed,Return[$Failed]];
     KnotTheory="KnotTheory"/.(I/.AllInvariants);
-    If[KnotTheory\[Equal]"KnotTheory",
+    If[KnotTheory=="KnotTheory",
       Print["Sorry, I don't know how to calculate the invariant "<>I<>
           " using KnotTheory`."];Return[$Failed]];
     KnotTheory[K]]
 
 ReadWikiFunction[I_String]:=("ReadWiki"/.(I/.AllInvariants))/.
-    "ReadWiki"\[Rule]FromWikiString
+    "ReadWiki"->FromWikiString
 
 RetrieveInvariant[I_String,K_,"KnotAtlas"]:=Module[{WikiPage,WikiResult},
     WikiPage=WikiPageForInvariant[I];
-    If[WikiPage\[Equal]$Failed,Return[$Failed]];
+    If[WikiPage==$Failed,Return[$Failed]];
     WikiResult=WikiGetPageText["Data:"<>NameString[K]<>"/"<>WikiPage];
     ReadWikiFunction[I][WikiResult]]
 
@@ -224,8 +224,8 @@ RetrieveInvariants[Is:{__String},Ks_List,"KnotAtlas"]:=
     getResult[I_,K_]:=Module[{c,r},
         c=
           Cases[wikiResult,{"Data:"<>NameString[K]<>"/"<>
-                  WikiPageForInvariant[I],r_}\[RuleDelayed]r];
-        If[Length[c]\[Equal]1,c\[LeftDoubleBracket]1\[RightDoubleBracket],""]
+                  WikiPageForInvariant[I],r_}:>r];
+        If[Length[c]==1,c\[LeftDoubleBracket]1\[RightDoubleBracket],""]
         ];
     delegateReadWikiFunction[I_,K_]:=With[{result=getResult[I,K]},
         If[result=="",Null,ReadWikiFunction[I][result]]
@@ -243,8 +243,8 @@ RetrieveInvariants[pairs_List,"KnotAtlas"]:=
     getResult[I_,K_]:=Module[{c,r},
         c=
           Cases[wikiResult,{"Data:"<>NameString[K]<>"/"<>
-                  WikiPageForInvariant[I],r_}\[RuleDelayed]r];
-        If[Length[c]\[Equal]1,c\[LeftDoubleBracket]1\[RightDoubleBracket],""]
+                  WikiPageForInvariant[I],r_}:>r];
+        If[Length[c]==1,c\[LeftDoubleBracket]1\[RightDoubleBracket],""]
         ];
     delegateReadWikiFunction[I_,K_]:=With[{result=getResult[I,K]},
         If[result=="",Null,ReadWikiFunction[I][result]]
@@ -255,7 +255,8 @@ RetrieveInvariants[pairs_List,"KnotAtlas"]:=
 ,#\[LeftDoubleBracket]2\[RightDoubleBracket]]}&/@pairs
     ]
 
-KnotInfoGroup[Knot[n_Integer,_Integer]]/;(3\[LessEqual]n\[LessEqual]6):="knots=3-6&"
+KnotInfoGroup[Knot[n_Integer,_Integer]]/;(3<=n<=6):="knots=3-6&"
+
 
 KnotInfoGroup[Knot[7,_Integer]]:="knots=7&"
 KnotInfoGroup[Knot[8,_Integer]]:="knots=8&"
@@ -270,8 +271,8 @@ KnotInfoGroup[Knot[12,NonAlternating,k_Integer]]:=
 
 TrimWhitespace[S_String]:=
   StringReplace[
-    S,{StartOfString~~Whitespace\[RuleDelayed]"",
-      Whitespace~~EndOfString\[RuleDelayed]""}]
+    S,{StartOfString~~Whitespace:>"",
+      Whitespace~~EndOfString:>""}]
 
 RetrieveInvariants[{I_String},Ks_List,"KnotInfo"]:=
   Module[{groupstring,knotinfopage,knotinfotag,datatable},
@@ -288,11 +289,11 @@ RetrieveInvariants[{I_String},Ks_List,"KnotInfo"]:=
           "<table"~~Except[">"]..~~
                 ">"~~Whitespace~~
                     "Name,"~~ShortestMatch[__]~~
-                        "<br>"~~dt:ShortestMatch[__]~~"</table"\[RuleDelayed]
+                        "<br>"~~dt:ShortestMatch[__]~~"</table":>
             dt]\[LeftDoubleBracket]1\[RightDoubleBracket];
     StringCases[datatable, 
       "& "~~knotname:ShortestMatch[__]~~
-            " & "~~value:ShortestMatch[__]~~"<br>"\[RuleDelayed]{I,
+            " & "~~value:ShortestMatch[__]~~"<br>":>{I,
           Knot[knotname],FromKnotInfoString[TrimWhitespace[value]]}]
     ]
 
@@ -314,7 +315,7 @@ RetrieveInvariants[pairs:{{_String,_}...},
 Clear[WikiPageForInvariant];
 WikiPageForInvariant[I_String]:=
   WikiPageForInvariant[I]=Module[{rule=InvariantRule[I],wikiPage},
-      If[rule\[Equal]$Failed,Return[$Failed]];
+      If[rule==$Failed,Return[$Failed]];
       wikiPage="WikiPage"/.rule;
       If[wikiPage==="WikiPage",
         Print["Sorry, I don't know how to store the invariant "<>I<>
@@ -324,7 +325,7 @@ WikiPageForInvariant[I_String]:=
 
 
 
-Options[StoreInvariants]={Write\[Rule]True};
+Options[StoreInvariants]={Write->True};
 
 StoreInvariants[Dall:{{_String,_,_}...},"KnotAtlas",opts___]:=
   Module[{D,invariants,unknownInvariants,wikiPages,uploadPairs},
@@ -350,7 +351,7 @@ StoreInvariants[Dall:{{_String,_,_}...},"CSVString"]:=
 
 KnotTheorySetterForInvariant[I_String]:=
   KnotTheorySetterForInvariant[I]=Module[{rule=InvariantRule[I],setter},
-      If[rule\[Equal]$Failed,Return[$Failed]];
+      If[rule==$Failed,Return[$Failed]];
       setter="KnotTheorySetter"/.rule;
       If[setter==="KnotTheorySetter",
         Print["Sorry, I don't know how to store the invariant "<>I<>
@@ -392,7 +393,7 @@ RetrieveInvariant[I_String,K_,"url"]:=
       Return[$Failed]];
     Off[FetchURL::conopen];
     data=Import[url,"Text"];
-    If[data\[Equal]$Failed,Return[$Failed]];
+    If[data==$Failed,Return[$Failed]];
     Return[ParseKnotInvariantFromURL[I,K,data]];
     ]
 
@@ -416,11 +417,11 @@ TransferUnknownInvariants[invariants:{___String},knots_List,source:"KnotTheory",
       AbsoluteTiming[
           needed=Cases[
               RetrieveInvariants[invariants,knots,
-                target],{i_,k_,Null}\[RuleDelayed]{i,
+                target],{i_,k_,Null}:>{i,
                   k}]]\[LeftDoubleBracket]1\[RightDoubleBracket],")"];
     Print["Starting to calculate ",Length[needed]," invariants..."];
     While[Length[needed]>0,
-      While[Length[needed]>0\[And](timer<interval/.Second\[Rule]1),
+      While[Length[needed]>0&&(timer<interval/.Second->1),
         workingset=take[needed,chunksize];
         counter+=Length[workingset];
         timer+=
@@ -432,7 +433,7 @@ TransferUnknownInvariants[invariants:{___String},knots_List,source:"KnotTheory",
         needed=Complement[needed,workingset];
         ];
       Print["Uploaded ",counter," invariants in ", timer];
-      If[2chunksize\[LessEqual]counter,++chunksize];
+      If[2chunksize<=counter,++chunksize];
       counter=0;
       timer=0 Second;
       ];
@@ -457,24 +458,24 @@ FindDataDiscrepancies[D1:{{_String,_,_}...},D2:{{_String,_,_}...}]:=
       and split it into doublets (or singlets) corresponding to the same \
 invariant and knot.*)D=
       Split[Sort[D1t~Join~D2t],SameQ[Take[#1,2],Take[#2,2]]&];
-    (*Take only the pairs.*)P=Select[D,Length[#]\[Equal]2&];
+    (*Take only the pairs.*)P=Select[D,Length[#]==2&];
     (*Combine the pairs*)C=
-      P/.{{I_,K_,1,V1_},{I_,K_,2,V2_}}\[RuleDelayed]{I,K,V1,V2};
+      P/.{{I_,K_,1,V1_},{I_,K_,2,V2_}}:>{I,K,V1,V2};
     Select[
       C,#\[LeftDoubleBracket]3\[RightDoubleBracket]=!=#\[LeftDoubleBracket]4\
 \[RightDoubleBracket]&]]
 
 FindMissingData[D1:{{_String,_,_}...},D2:{{_String,_,_}...}]:=
-  Complement[D1,D2,SameTest\[Rule]SameQ[Take[#1,2],Take[#2,2]]&]
+  Complement[D1,D2,SameTest->SameQ[Take[#1,2],Take[#2,2]]&]
 
-Options[ProcessKnotAtlasUploadQueue]={Timeout\[Rule]42300,
-      Repeats\[Rule]\[Infinity]};
+Options[ProcessKnotAtlasUploadQueue]={Timeout->42300,
+      Repeats->\[Infinity]};
 
 ProcessKnotAtlasUploadQueue[pagename_String,opts___Rule]:=
   Module[{n=0,repeats=Repeats/.{opts}/.Options[ProcessKnotAtlasUploadQueue],
       timeout=Timeout/.{opts}/.Options[ProcessKnotAtlasUploadQueue]},
     While[(++n<
-            repeats)\[And](TimeConstrained[
+            repeats)&&(TimeConstrained[
               ProcessKnotAtlasUploadQueue[pagename,WikiGetPageText[pagename]],
               timeout]=!=Null)]
     ]
@@ -483,15 +484,15 @@ randomEntry[list_]:=
   list\[LeftDoubleBracket]Random[
       Integer,{1,Length[list]}]\[RightDoubleBracket]
 
-randomEntry[list_/;Length[list]\[Equal]0]:=Null
+randomEntry[list_/;Length[list]==0]:=Null
 
 ProcessKnotAtlasUploadQueue[pagename_String,contents_String]:=
   Module[{item,result},
     result=
       ProcessKnotAtlasUploadQueueEntry[pagename,
         item=randomEntry[StringSplit[contents,StringExpression[EndOfLine]]]];
-    If[result\[Equal]$Failed,
-      WikiStringReplace[pagename,item~~EndOfLine\[Rule]""];
+    If[result==$Failed,
+      WikiStringReplace[pagename,item~~EndOfLine->""];
       WikiSetPageText["Upload Queues Rejected Items",
         WikiGetPageText["Upload Queues Rejected Items"]<>"\n"<>item]
       ];
@@ -514,8 +515,8 @@ ProcessKnotAtlasUploadQueueEntry[pagename_String,item_String]:=
       StringCases[item,
         "*\""~~invariant:ShortestMatch[__]~~
               "\", \""~~knotset:ShortestMatch[__]~~
-                  "\""\[RuleDelayed]{invariant,knotset}];
-    If[Length[cases]\[Equal]0,Return[$Failed]];
+                  "\"":>{invariant,knotset}];
+    If[Length[cases]==0,Return[$Failed]];
     ProcessKnotAtlasUploadQueueEntry[pagename,
           item,#\[LeftDoubleBracket]1\[RightDoubleBracket],#\
 \[LeftDoubleBracket]2\[RightDoubleBracket]]&/@cases
@@ -561,7 +562,7 @@ ProcessKnotAtlasUploadQueueEntry[pagename_String,item_String,invariant_String,
     result=
       TransferUnknownInvariants[{invariant},globalToExpression[knotset],"KnotTheory",
         "KnotAtlas"];
-    If[result\[Equal]{},WikiStringReplace[pagename,item~~EndOfLine\[Rule]""];
+    If[result=={},WikiStringReplace[pagename,item~~EndOfLine->""];
       WikiSetPageText["Upload Queues Completed Work",
         WikiGetPageText["Upload Queues Completed Work"]<>"\n"<>item]];
     item
@@ -581,7 +582,8 @@ CreateDataPackage[datasetname_String,invariants:{__String},knotset_List]:=
           "\nPlease double check the name, and delete the pre-existing file if appropriate."]\
 ;Return[$Failed]];
     WriteString[filename,
-      "BeginPackage[\"KnotTheory`"<>datasetname<>"`\",{\"KnotTheory`\"}]\n"<>
+      "BeginPackage[\"KnotTheory`"<>datasetname<>"`\",{\"KnotTheory`\"}]\n"<>
+
         
         "Message[KnotTheory::loading, \""<>datasetname<>"`\"]\n"<>
         StoreInvariants[RetrieveInvariants[invariants,knotset,"KnotAtlas"],

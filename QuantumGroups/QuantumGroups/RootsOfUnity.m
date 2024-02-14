@@ -35,7 +35,7 @@ ShortDominantRoots[\[CapitalGamma]][[1]]]
 ]
 
 
-WeightInAlcoveQ[\[CapitalGamma]_,l_Integer][\[Lambda]:{___Integer}]:=(And@@(NonNegative/@\[Lambda]))\[And](KillingForm[\[CapitalGamma]][AlcoveDefiningRoot[\[CapitalGamma],l],\[Lambda]+\[Rho][\[CapitalGamma]]]<If[EvenQ[l],l/2,l])
+WeightInAlcoveQ[\[CapitalGamma]_,l_Integer][\[Lambda]:{___Integer}]:=(And@@(NonNegative/@\[Lambda]))&&(KillingForm[\[CapitalGamma]][AlcoveDefiningRoot[\[CapitalGamma],l],\[Lambda]+\[Rho][\[CapitalGamma]]]<If[EvenQ[l],l/2,l])
 
 
 AlcoveWeights[\[CapitalGamma]_,l_]:=AlcoveWeights[\[CapitalGamma],l]=Module[{ar=AlcoveDefiningRoot[\[CapitalGamma],l],\[Lambda]=ZeroVector[Rank[\[CapitalGamma]]],p},
@@ -43,7 +43,7 @@ Reap[
 While[
 Sow[\[Lambda]];
 \[Lambda]+=UnitVector[Rank[\[CapitalGamma]],1];
-While[\[Not]ZeroVectorQ[\[Lambda]]\[And]\[Not]WeightInAlcoveQ[\[CapitalGamma],l][\[Lambda]],
+While[\[Not]ZeroVectorQ[\[Lambda]]&&\[Not]WeightInAlcoveQ[\[CapitalGamma],l][\[Lambda]],
 (* odometer *)
 p=Position[\[Lambda],x_/;x>0][[1,1]];
 \[Lambda][[p]]=0;

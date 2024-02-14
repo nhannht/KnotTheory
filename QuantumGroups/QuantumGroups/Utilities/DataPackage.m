@@ -88,8 +88,8 @@ directory=ToFileName[Most[fullPackagePath]];
 If[Length[FileNames[fullPackagePath[[-2]],ToFileName[Drop[fullPackagePath,-2]]]]==0,CreateDirectory[directory]];
 package=StringJoin@@(Flatten[Transpose[{fullPackagePath,Table["`",{Length[fullPackagePath]}]}],1]);
 filename=ToFileName[Most[fullPackagePath],Last[fullPackagePath]<>".m"];
-If[loadPreexistingPackage\[And]!MemberQ[$ContextPath,package],
-If[useGzip\[And]Length[FileNames[filename]]==0\[And]Length[FileNames[filename<>".gz"]]!=0,
+If[loadPreexistingPackage&&!MemberQ[$ContextPath,package],
+If[useGzip&&Length[FileNames[filename]]==0&&Length[FileNames[filename<>".gz"]]!=0,
 SetDirectory[directory];
 Run["gzip -d "<>Last[fullPackagePath]<>".m.gz"];
 ResetDirectory[]
@@ -103,7 +103,7 @@ contentsTop="BeginPackage[\""<>package<>"\""<>If[MatchQ[needs,{__String}],", "<>
 <>extraPrivateCode<>"\n";
 contentsBottom="End[]\n"<>"EndPackage[]";
 If[Length[FileNames[filename]]!=0,DeleteFile[filename]];
-If[useGzip\[And]Length[FileNames[filename<>".gz"]]!=0,DeleteFile[filename<>".gz"]];
+If[useGzip&&Length[FileNames[filename<>".gz"]]!=0,DeleteFile[filename<>".gz"]];
 WriteString[filename,contentsTop];
 (Function[{rule},WriteRule[filename,rule]]/@Cases[MatchingValues@@#,((p_:>v_)/;ByteCount[v]<=byteCountLimit)])&/@patterns;
 WriteString[filename,contentsBottom];

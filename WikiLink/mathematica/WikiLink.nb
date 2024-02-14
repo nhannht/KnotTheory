@@ -147,7 +147,7 @@ Cell[BoxData[
           DirectoryName[
             File /. Flatten[\(FileInformation[
                       ToFileName[#, "\<WikiLink.m\>"]] &\) /@ \(($Path /. \
-"\<.\>" \[Rule] Directory[])\)]]];\)\)], "Input",
+"\<.\>" -> Directory[])\)]]];\)\)], "Input",
   InitializationCell->True],
 
 Cell[BoxData[
@@ -215,12 +215,12 @@ WikiSetPageText\>"\);\)\)], "Input",
 
 Cell[BoxData[
     \(WikifyName[name_String] := 
-      StringReplace[name, "\< \>" \[Rule] "\<_\>"]\)], "Input",
+      StringReplace[name, "\< \>" -> "\<_\>"]\)], "Input",
   InitializationCell->True],
 
 Cell[BoxData[
     \(UnwikifyName[name_String] := 
-      StringReplace[name, "\<_\>" \[Rule] "\< \>"]\)], "Input",
+      StringReplace[name, "\<_\>" -> "\< \>"]\)], "Input",
   InitializationCell->True],
 
 Cell[BoxData[
@@ -240,8 +240,8 @@ Cell[BoxData[
             mediawikiConnection@
               getPageTexts[wikinames]; \[IndentingNewLine]getResult[name_] := 
             Module[{c, r}, \[IndentingNewLine]c = 
-                Cases[results, {WikifyName[name], r_} \[RuleDelayed] 
-                    r]; \[IndentingNewLine]If[Length[c] \[Equal] 1, 
+                Cases[results, {WikifyName[name], r_} :>
+                    r]; \[IndentingNewLine]If[Length[c] == 1,
                 c\[LeftDoubleBracket]1\[RightDoubleBracket], "\<\>"]\
 \[IndentingNewLine]]; \[IndentingNewLine]\({#, getResult[#]} &\) /@ 
             names\[IndentingNewLine]]\[IndentingNewLine]]\)], "Input",
@@ -307,8 +307,8 @@ Cell[BoxData[
           WikiGetPageText["\<Who_Am_I\>"]; \[IndentingNewLine]cases = 
           StringCases[
             text, "\<--[[User:\>" ~~ \(x__ ~~ \("\<|\>" ~~ \(x__ ~~ \
-"\<]]\>"\)\)\) \[RuleDelayed] x]; \[IndentingNewLine]If[
-          Length[cases] \[Equal] 1, 
+"\<]]\>"\)\)\) :> x]; \[IndentingNewLine]If[
+          Length[cases] == 1,
           Return[cases\[LeftDoubleBracket]1\[RightDoubleBracket]]]; \
 \[IndentingNewLine]Return[$Failed];\[IndentingNewLine]]\)], "Input",
   InitializationCell->True],
@@ -416,9 +416,9 @@ Cell[BoxData[
             text, "\<<a href=\"\>" ~~ \(nextURL : \((baseURL ~~ \
 \("\<?title=Special:Allpages&amp;from=\>" ~~ \(initialText ~~ 
                             ShortestMatch[__]\)\))\) ~~ "\<\" \
-title=\"Special:Allpages\">Next page\>"\) \[RuleDelayed] "\<http://\>" <> 
+title=\"Special:Allpages\">Next page\>"\) :> "\<http://\>" <>
                 hostname <> StringReplace[nextURL, "\<&amp;\>" -> "\<&\>"], 
-            1]; \[IndentingNewLine]If[Length[candidates] \[Equal] 0, $Failed, 
+            1]; \[IndentingNewLine]If[Length[candidates] == 0, $Failed,
           candidates\[LeftDoubleBracket]1\[RightDoubleBracket]]\
 \[IndentingNewLine]]\)], "Input",
   InitializationCell->True],
@@ -433,12 +433,12 @@ Cell[BoxData[
               baseURL <> "\<?title=Special%3AAllpages&from=\>" <> 
               initialText <> "\<&namespace=\>" <> ToString[nameSpaceNumber], 
           allPagesText}, \[IndentingNewLine]While[
-          allPagesURL =!= $Failed \[And] 
-            Length[pages] \[LessEqual] 
+          allPagesURL =!= $Failed &&
+            Length[pages] <=
               maxPages, \[IndentingNewLine]Print["\<Looking at: \>" <> 
               allPagesURL]; \[IndentingNewLine]allPagesText = 
             Import[allPagesURL, "\<Text\>"]; \[IndentingNewLine]If[
-            allPagesText \[Equal] $Failed, 
+            allPagesText == $Failed,
             Continue[]]; \[IndentingNewLine]allPagesURL = 
             nextPageURL[hostname, baseURL, allPagesText, 
               initialText]; \[IndentingNewLine]newPages = 
@@ -446,7 +446,7 @@ Cell[BoxData[
               allPagesText, "\<title=\"\>" ~~ \(pagename : \((\((\((nameSpace \
 ~~ "\<:\>")\) | "\<\>")\) ~~ \(initialText ~~ 
                             ShortestMatch[__]\))\) ~~ "\<\"\>"\) \
-\[RuleDelayed] pagename]; \[IndentingNewLine]Print["\<Found \>" <> 
+:> pagename]; \[IndentingNewLine]Print["\<Found \>" <>
               ToString[
                 Length[newPages]] <> "\< more pages.\>"]; \
 \[IndentingNewLine]pages = 

@@ -539,7 +539,7 @@ otherwise.\>\""}], ";"}]}], "\[IndentingNewLine]", "]"}]], "Input",
 Cell[BoxData[
  RowBox[{"If", "[", 
   RowBox[{
-   RowBox[{"$VersionNumber", "\[GreaterEqual]", "6."}], ",", 
+   RowBox[{"$VersionNumber", ">=", "6."}], ",",
    "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"Unprotect", "[", "IdentityMatrix", "]"}], ";", 
@@ -602,7 +602,7 @@ Cell[BoxData[
          "/@", 
          RowBox[{"(", 
           RowBox[{"$Path", "/.", 
-           RowBox[{"\"\<.\>\"", "\[Rule]", 
+           RowBox[{"\"\<.\>\"", "->",
             RowBox[{"Directory", "[", "]"}]}]}], ")"}]}], "]"}]}], ")"}], ",", 
      RowBox[{"-", "14"}]}], "]"}]}]}]], "Input",
  InitializationCell->True,
@@ -719,7 +719,7 @@ Cell[BoxData[
   RowBox[{"qNumberQ", "[", "x_", "]"}], ":=", 
   RowBox[{"NumberQ", "[", 
    RowBox[{"x", "/.", 
-    RowBox[{"Global`q", "\[Rule]", "3.14159"}]}], "]"}]}]], "Input",
+    RowBox[{"Global`q", "->", "3.14159"}]}], "]"}]}]], "Input",
  InitializationCell->True,
  CellLabel->"In[67]:="],
 
@@ -771,7 +771,7 @@ Cell[BoxData[
        RowBox[{"UnitVector", "[", 
         RowBox[{"n_", ",", "i_Integer"}], "]"}], "/;", 
        RowBox[{"(", 
-        RowBox[{"1", "\[LessEqual]", "i", "\[LessEqual]", "n"}], ")"}]}], ":=", 
+        RowBox[{"1", "<=", "i", "<=", "n"}], ")"}]}], ":=",
       RowBox[{"Module", "[", 
        RowBox[{
         RowBox[{"{", 
@@ -825,11 +825,11 @@ Cell[BoxData[
     RowBox[{"Complement", "[", 
      RowBox[{"v", ",", 
       RowBox[{"{", 
-       RowBox[{"0", ",", "1"}], "}"}]}], "]"}], "\[Equal]", 
-    RowBox[{"{", "}"}]}], "\[And]", 
+       RowBox[{"0", ",", "1"}], "}"}]}], "]"}], "==",
+    RowBox[{"{", "}"}]}], "&&",
    RowBox[{
     RowBox[{"Count", "[", 
-     RowBox[{"v", ",", "1"}], "]"}], "\[Equal]", "1"}]}]}]], "Input",
+     RowBox[{"v", ",", "1"}], "]"}], "==", "1"}]}]}]], "Input",
  InitializationCell->True,
  CellLabel->"In[73]:="],
 
@@ -841,7 +841,7 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"Union", "[", "v", "]"}], "===", 
     RowBox[{"{", "0", "}"}]}], "\[Or]", 
-   RowBox[{"v", "\[Equal]", 
+   RowBox[{"v", "==",
     RowBox[{"{", "}"}]}]}]}]], "Input",
  InitializationCell->True,
  CellLabel->"In[74]:="],
@@ -915,7 +915,7 @@ InputAliases->{"intt" -> RowBox[{"\[Integral]",
        "\[Placeholder]", NotationBoxTag, TagStyle -> "NotationTemplateStyle"],
         ",", "\[Placeholder]"}], "]"}], "addia" -> 
   RowBox[{"AddInputAlias", "[", 
-     RowBox[{"\"\[Placeholder]\"", "\[Rule]", 
+     RowBox[{"\"\[Placeholder]\"", "->",
        TagBox[
        "\[Placeholder]", NotationBoxTag, TagStyle -> 
         "NotationTemplateStyle"]}], "]"}], "pattwraper" -> 

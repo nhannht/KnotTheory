@@ -75,7 +75,7 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"SteinbergFold", "[", 
      RowBox[{"\[CapitalGamma]_", ",", "i_"}], "]"}], "[", "c_", "]"}], "/;", 
-   RowBox[{"1", "\[LessEqual]", "i", "\[LessEqual]", 
+   RowBox[{"1", "<=", "i", "<=",
     RowBox[{"Rank", "[", "\[CapitalGamma]", "]"}]}]}], ":=", 
   RowBox[{"Module", "[", 
    RowBox[{
@@ -108,8 +108,8 @@ Cell[BoxData[
            "]"}], "/;", 
           RowBox[{"(", 
            RowBox[{
-            RowBox[{"innerproduct", "[", "\[Lambda]", "]"}], "\[Equal]", 
-            "0"}], ")"}]}], "\[RuleDelayed]", "0"}], ",", 
+            RowBox[{"innerproduct", "[", "\[Lambda]", "]"}], "==",
+            "0"}], ")"}]}], ":>", "0"}], ",",
         RowBox[{
          RowBox[{
           RowBox[{
@@ -118,7 +118,7 @@ Cell[BoxData[
           RowBox[{"(", 
            RowBox[{
             RowBox[{"innerproduct", "[", "\[Lambda]", "]"}], "<", "0"}], 
-           ")"}]}], "\[RuleDelayed]", 
+           ")"}]}], ":>",
          RowBox[{"(", 
           RowBox[{
            RowBox[{"f", "[", "\[Lambda]", "]"}], ";", 
@@ -183,8 +183,8 @@ Cell[BoxData[
            "]"}], "/;", 
           RowBox[{"(", 
            RowBox[{
-            RowBox[{"innerproduct", "[", "\[Lambda]", "]"}], "\[Equal]", 
-            "wall"}], ")"}]}], "\[RuleDelayed]", "0"}], ",", 
+            RowBox[{"innerproduct", "[", "\[Lambda]", "]"}], "==",
+            "wall"}], ")"}]}], ":>", "0"}], ",",
         RowBox[{
          RowBox[{
           RowBox[{
@@ -193,7 +193,7 @@ Cell[BoxData[
           RowBox[{"(", 
            RowBox[{
             RowBox[{"innerproduct", "[", "\[Lambda]", "]"}], "<", "wall"}], 
-           ")"}]}], "\[RuleDelayed]", 
+           ")"}]}], ":>",
          RowBox[{"-", 
           RowBox[{
            RowBox[{"Irrep", "[", "\[CapitalGamma]", "]"}], "[", 
@@ -293,7 +293,7 @@ Cell[BoxData[
             RowBox[{
              RowBox[{"\[Kappa]", ":", 
               RowBox[{"{", "___Integer", "}"}]}], ",", "n_Integer"}], "}"}], 
-           "\[RuleDelayed]", 
+           ":>",
            RowBox[{"n", " ", 
             RowBox[{
              RowBox[{"Irrep", "[", "\[CapitalGamma]", "]"}], "[", 
@@ -307,12 +307,12 @@ Cell[BoxData[
           RowBox[{
            RowBox[{"Irrep", "[", "\[CapitalGamma]", "]"}], "[", "_", 
            "]"}]}]}], "/;", 
-        RowBox[{"n", ">", "0"}]}], "\[RuleDelayed]", 
+        RowBox[{"n", ">", "0"}]}], ":>",
        RowBox[{"DirectSum", "@@", 
         RowBox[{"Table", "[", 
          RowBox[{"V", ",", 
           RowBox[{"{", "n", "}"}]}], "]"}]}]}], "}"}]}], "/.", 
-    RowBox[{"Plus", "\[Rule]", "DirectSum"}]}]}]}]], "Input",
+    RowBox[{"Plus", "->", "DirectSum"}]}]}]}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.4201505399986176`*^9, 3.420150577632733*^9}, {
    3.420150631039528*^9, 3.4201506973248415`*^9}, {3.430152581158965*^9, 

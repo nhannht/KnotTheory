@@ -113,8 +113,8 @@ Cell[BoxData[
     RowBox[{"If", "[", 
      RowBox[{
       RowBox[{
-       RowBox[{"i", "\[Equal]", "i0"}], "\[And]", 
-       RowBox[{"j", "\[Equal]", "j0"}]}], ",", "1", ",", "0"}], "]"}], ",", 
+       RowBox[{"i", "==", "i0"}], "&&",
+       RowBox[{"j", "==", "j0"}]}], ",", "1", ",", "0"}], "]"}], ",",
     RowBox[{"{", 
      RowBox[{"i", ",", "1", ",", "n"}], "}"}], ",", 
     RowBox[{"{", 
@@ -752,7 +752,7 @@ Cell[BoxData[
     RowBox[{"If", "[", 
      RowBox[{
       RowBox[{
-       RowBox[{"Length", "[", "p", "]"}], "\[Equal]", "0"}], ",", "\[Lambda]",
+       RowBox[{"Length", "[", "p", "]"}], "==", "0"}], ",", "\[Lambda]",
        ",", 
       RowBox[{
        RowBox[{
@@ -859,7 +859,7 @@ Cell[BoxData[
          RowBox[{
           RowBox[{
            RowBox[{"Irrep", "[", "_", "]"}], "[", "\[Lambda]_", "]"}], 
-          "\[RuleDelayed]", "\[Lambda]"}]}], ")"}]}], "]"}], 
+          ":>", "\[Lambda]"}]}], ")"}]}], "]"}],
      "\[RightDoubleBracket]"}]}], "]"}]}]], "Input",
  InitializationCell->True],
 
@@ -889,7 +889,7 @@ Cell[BoxData[
          RowBox[{
           RowBox[{
            RowBox[{"Irrep", "[", "_", "]"}], "[", "\[Lambda]_", "]"}], 
-          "\[RuleDelayed]", "\[Lambda]"}]}], ")"}]}], "]"}], 
+          ":>", "\[Lambda]"}]}], ")"}]}], "]"}],
      "\[RightDoubleBracket]"}]}], "]"}]}]], "Input",
  InitializationCell->True],
 
@@ -1048,7 +1048,7 @@ Cell[BoxData[
           RowBox[{"UnitVector", "[", 
            RowBox[{
             RowBox[{"Rank", "[", "\[CapitalGamma]", "]"}], ",", "k"}], "]"}], 
-          "]"}]}], "]"}]}], "]"}], "\[Equal]", "1"}], "\[And]", 
+          "]"}]}], "]"}]}], "]"}], "==", "1"}], "&&",
     RowBox[{
      RowBox[{"WeightMultiplicity", "[", 
       RowBox[{"\[CapitalGamma]", ",", 
@@ -1060,7 +1060,7 @@ Cell[BoxData[
         "]"}], ",", 
        RowBox[{"ZeroVector", "[", 
         RowBox[{"Rank", "[", "\[CapitalGamma]", "]"}], "]"}]}], "]"}], 
-     "\[Equal]", "0"}]}]}], "]"}]], "Input"],
+     "==", "0"}]}]}], "]"}]], "Input"],
 
 Cell[BoxData["False"], "Output"]
 }, Open  ]],
@@ -1086,7 +1086,7 @@ Cell[BoxData[
           RowBox[{"UnitVector", "[", 
            RowBox[{
             RowBox[{"Rank", "[", "\[CapitalGamma]", "]"}], ",", "k"}], "]"}], 
-          "]"}]}], "]"}]}], "]"}], "\[Equal]", "1"}], "\[And]", 
+          "]"}]}], "]"}]}], "]"}], "==", "1"}], "&&",
     RowBox[{
      RowBox[{"WeightMultiplicity", "[", 
       RowBox[{"\[CapitalGamma]", ",", 
@@ -1098,7 +1098,7 @@ Cell[BoxData[
         "]"}], ",", 
        RowBox[{"ZeroVector", "[", 
         RowBox[{"Rank", "[", "\[CapitalGamma]", "]"}], "]"}]}], "]"}], 
-     "\[Equal]", "0"}]}]}], "]"}]], "Input"],
+     "==", "0"}]}]}], "]"}]], "Input"],
 
 Cell[BoxData["False"], "Output"]
 }, Open  ]],
@@ -1175,7 +1175,7 @@ Cell[BoxData[
          RowBox[{
           RowBox[{
            RowBox[{"KillingForm", "[", "\[CapitalGamma]", "]"}], "[", 
-           RowBox[{"#", ",", "#"}], "]"}], "\[Equal]", "shortLength"}], 
+           RowBox[{"#", ",", "#"}], "]"}], "==", "shortLength"}],
          "&"}]}], "]"}]}]}], "\[IndentingNewLine]", "]"}]}]}]], "Input",
  InitializationCell->True],
 
@@ -1206,7 +1206,7 @@ Cell[BoxData[
          RowBox[{
           RowBox[{
            RowBox[{"KillingForm", "[", "\[CapitalGamma]", "]"}], "[", 
-           RowBox[{"#", ",", "#"}], "]"}], "\[Equal]", "longLength"}], 
+           RowBox[{"#", ",", "#"}], "]"}], "==", "longLength"}],
          "&"}]}], "]"}]}]}], "\[IndentingNewLine]", "]"}]}]}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.420129070782437*^9, 3.420129086935664*^9}, {
@@ -1237,7 +1237,7 @@ Cell[BoxData[
          RowBox[{
           RowBox[{
            RowBox[{"KillingForm", "[", "\[CapitalGamma]", "]"}], "[", 
-           RowBox[{"#", ",", "#"}], "]"}], "\[Equal]", "shortLength"}], 
+           RowBox[{"#", ",", "#"}], "]"}], "==", "shortLength"}],
          "&"}]}], "]"}]}]}], "\[IndentingNewLine]", "]"}]}]}]], "Input",
  InitializationCell->True],
 

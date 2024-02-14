@@ -113,7 +113,7 @@ Cell[BoxData[
    RowBox[{"(", 
     RowBox[{"And", "@@", 
      RowBox[{"(", 
-      RowBox[{"NonNegative", "/@", "\[Lambda]"}], ")"}]}], ")"}], "\[And]", 
+      RowBox[{"NonNegative", "/@", "\[Lambda]"}], ")"}]}], ")"}], "&&",
    RowBox[{"(", 
     RowBox[{
      RowBox[{
@@ -164,7 +164,7 @@ Cell[BoxData[
           RowBox[{
            RowBox[{
             RowBox[{"\[Not]", 
-             RowBox[{"ZeroVectorQ", "[", "\[Lambda]", "]"}]}], "\[And]", 
+             RowBox[{"ZeroVectorQ", "[", "\[Lambda]", "]"}]}], "&&",
             RowBox[{"\[Not]", 
              RowBox[{
               RowBox[{"WeightInAlcoveQ", "[", 

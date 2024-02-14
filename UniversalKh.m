@@ -113,7 +113,7 @@ Komplex @@ Table[{r, Coefficient[obs, t, r],  Coefficient[mos, t, r]}, {r, minr,
 ElementaryMatrix[m_,n_,i_,j_]:=ElementaryMatrix[m,n,i,j,1]
 
 
-ElementaryMatrix[m_,n_,i_,j_,z_]/;1<=i<=m\[And]1<=j<=n:=
+ElementaryMatrix[m_,n_,i_,j_,z_]/;1<=i<=m&&1<=j<=n:=
 Module[{data},
 data=Table[0,{m},{n}];
 data[[i,j]]=z;

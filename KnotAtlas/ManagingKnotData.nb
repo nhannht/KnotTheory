@@ -194,7 +194,7 @@ Cell["Reading invariant definitions from a table", "Subsection",
 Cell[BoxData[
     \(\(namePattern = "\<<!-- Invariant name -->\>" ~~ \(WhitespaceCharacter ...  \
 ~~ \("\<<td>\>" ~~ \(n : 
-                    ShortestMatch[__] ~~ "\<</td>\>"\)\)\) \[RuleDelayed] 
+                    ShortestMatch[__] ~~ "\<</td>\>"\)\)\) :>
           n;\)\)], "Input",
   InitializationCell->True],
 
@@ -202,7 +202,7 @@ Cell[BoxData[
     \(\(linePattern = "\<<!-- \>" ~~ \(t : \((WordCharacter .. )\) ~~ \("\< =\
 \>" ~~ \(ShortestMatch[__] ~~ \("\<<td>\>" ~~ \(v : 
                         ShortestMatch[___] ~~ "\<</td>\>"\)\)\)\)\) \
-\[RuleDelayed] \((t \[Rule] v)\);\)\)], "Input",
+:> \((t -> v)\);\)\)], "Input",
   InitializationCell->True],
 
 Cell[BoxData[
@@ -213,15 +213,15 @@ Cell[BoxData[
 Cell[BoxData[
     \(ConstructInvariantRule[S_String] := 
       Module[{names = StringCases[S, namePattern], saveContext, rule}, 
-        If[Length[names] \[NotEqual] 1, 
+        If[Length[names] != 1,
           Return[$Failed]]; \[IndentingNewLine]saveContext = $Context; \
 \[IndentingNewLine]$Context = "\<Global`\>"; \[IndentingNewLine]rule = \
-\((names\[LeftDoubleBracket]1\[RightDoubleBracket] \[Rule] 
+\((names\[LeftDoubleBracket]1\[RightDoubleBracket] ->
                 DeleteCases[
                   StringCases[S, 
-                    linePattern], _ \[Rule] "\<\>"] /. \((t_String?\((MemberQ[
-                            expressionTags, #] &)\) \[Rule] 
-                    s_String)\) \[RuleDelayed] \((t \[Rule] 
+                    linePattern], _ -> "\<\>"] /. \((t_String?\((MemberQ[
+                            expressionTags, #] &)\) ->
+                    s_String)\) :> \((t ->
                     ToExpression[s])\))\); \[IndentingNewLine]$Context = 
           saveContext; \[IndentingNewLine]rule\[IndentingNewLine]]\)], "Input",\
 
@@ -229,15 +229,15 @@ Cell[BoxData[
 
 Cell[BoxData[
     \(QuantumInvariantRules = {\[IndentingNewLine]\((S_String /; 
-              StringMatchQ[S, "\<QuantumInvariant\>" ~~ __])\) \[RuleDelayed] 
+              StringMatchQ[S, "\<QuantumInvariant\>" ~~ __])\) :>
           Module[{\[CapitalGamma]0, \[Lambda]0, 
               cases}, \[IndentingNewLine]cases = 
               StringCases[
                 S, \(("\<QuantumInvariant/\>" ~~ \(\[CapitalGamma] : \
 \((LetterCharacter)\) ~~ \(n : \((DigitCharacter .. )\) ~~ \("\</\>" ~~ \
-\[Mu]__\)\)\))\) \[RuleDelayed] {\[CapitalGamma], 
+\[Mu]__\)\)\))\) :> {\[CapitalGamma],
                     n, \[Mu]}]; \[IndentingNewLine]If[
-              Length[cases] \[Equal] 0, {}, 
+              Length[cases] == 0, {},
               With[{\[CapitalGamma] = 
                     Subscript[
                       globalToExpression["\<QuantumGroups`\>" <> 
@@ -249,12 +249,12 @@ Cell[BoxData[
                     ToExpression["\<{\>" <> 
                         cases\[LeftDoubleBracket]1, 
                           3\[RightDoubleBracket] <> "\<}\>"]}, \
-\[IndentingNewLine]{"\<WikiPage\>" \[Rule] S, "\<KnotTheorySetter\>" \[Rule] 
+\[IndentingNewLine]{"\<WikiPage\>" -> S, "\<KnotTheorySetter\>" ->
                     Function[{K, 
                         p}, \(\(KnotTheory`QuantumKnotInvariants`\
 QuantumKnotInvariant[\[CapitalGamma], \
 \(QuantumGroups`Irrep[\[CapitalGamma]]\)[\[Lambda]]]\)[K] = 
-                            Function[{q}, p];\) &], "\<KnotTheory\>" \[Rule] 
+                            Function[{q}, p];\) &], "\<KnotTheory\>" ->
                     Function[{K}, \
 \(\(KnotTheory`QuantumKnotInvariants`QuantumKnotInvariant[\[CapitalGamma], \
 \(QuantumGroups`Irrep[\[CapitalGamma]]\)[\[Lambda]]]\)[K]\)[
@@ -281,7 +281,7 @@ Cell["Saving invariant definitions to a table", "Subsection",
 
 Cell[BoxData[
     \(InvariantTags[rules_] := 
-      Union @@ \((rules /. \((_ \[Rule] L_List)\) \[RuleDelayed] 
+      Union @@ \((rules /. \((_ -> L_List)\) :>
               First /@ L)\)\)], "Input",
   InitializationCell->True],
 
@@ -302,7 +302,7 @@ Cell[BoxData[
                   whitespaces[20 - StringLength[#]] <> "\<--> <td>\>" <> 
                   ToString[\(# /. 
                         rules\[LeftDoubleBracket]i, 
-                          2\[RightDoubleBracket]\) /. {# \[Rule] "\<\>"}] <> \
+                          2\[RightDoubleBracket]\) /. {# -> "\<\>"}] <> \
 "\<</td>\n\>" &\) /@ InvariantTags[rules])\) <> "\<</tr>\n\>"\)], "Input",
   InitializationCell->True],
 
@@ -327,7 +327,7 @@ Cell[BoxData[
       FixTeXFormExpression[
         ToExpression[
           StringReplace[
-            S, "\<<math>\>" ~~ \(X__ ~~ "\<</math>\>"\) \[RuleDelayed] X], 
+            S, "\<<math>\>" ~~ \(X__ ~~ "\<</math>\>"\) :> X],
           TeXForm]]\)], "Input",
   InitializationCell->True],
 
@@ -342,7 +342,7 @@ Cell[BoxData[
     \(FromWikiString[S_String] /; 
         StringMatchQ[S, "\<<nowiki>\>" ~~ \(__ ~~ "\<</nowiki>\>"\)] := 
       StringReplace[
-        S, "\<<nowiki>\>" ~~ \(X__ ~~ "\<</nowiki>\>"\) \[RuleDelayed] 
+        S, "\<<nowiki>\>" ~~ \(X__ ~~ "\<</nowiki>\>"\) :>
           X]\)], "Input",
   InitializationCell->True],
 
@@ -374,7 +374,7 @@ Cell[BoxData[
 
 Cell[BoxData[
     \(InvariantNames[L_List] := 
-      Cases[L, \((S_String \[Rule] _List)\) \[RuleDelayed] S]\)], "Input",
+      Cases[L, \((S_String -> _List)\) :> S]\)], "Input",
   InitializationCell->True],
 
 Cell[BoxData[
@@ -388,10 +388,10 @@ Cell[BoxData[
 Cell[BoxData[
     \(RetrieveInvariant[I_String, K_, "\<KnotTheory\>"] := 
       Module[{rule = InvariantRule[I], KnotTheory}, 
-        If[rule \[Equal] $Failed, 
+        If[rule == $Failed,
           Return[$Failed]]; \[IndentingNewLine]KnotTheory = "\<KnotTheory\>" /. \
 \((I /. AllInvariants)\); \[IndentingNewLine]If[
-          KnotTheory \[Equal] "\<KnotTheory\>", 
+          KnotTheory == "\<KnotTheory\>",
           Print["\<Sorry, I don't know how to calculate the invariant \>" <> 
               I <> "\< using KnotTheory`.\>"]; 
           Return[$Failed]]; \[IndentingNewLine]KnotTheory[K]]\)], "Input",
@@ -400,7 +400,7 @@ Cell[BoxData[
 Cell[BoxData[
     \(ReadWikiFunction[
         I_String] := \(("\<ReadWiki\>" /. \((I /. 
-                AllInvariants)\))\) /. "\<ReadWiki\>" \[Rule] 
+                AllInvariants)\))\) /. "\<ReadWiki\>" ->
           FromWikiString\)], "Input",
   InitializationCell->True],
 
@@ -408,7 +408,7 @@ Cell[BoxData[
     \(RetrieveInvariant[I_String, K_, "\<KnotAtlas\>"] := 
       Module[{WikiPage, WikiResult}, \[IndentingNewLine]WikiPage = 
           WikiPageForInvariant[I]; \[IndentingNewLine]If[
-          WikiPage \[Equal] $Failed, 
+          WikiPage == $Failed,
           Return[$Failed]]; \[IndentingNewLine]WikiResult = 
           WikiGetPageText["\<Data:\>" <> NameString[K] <> "\</\>" <> 
               WikiPage]; \[IndentingNewLine]\(ReadWikiFunction[I]\)[
@@ -433,8 +433,8 @@ Cell[BoxData[
           WikiGetPageTexts[pagenames]; \[IndentingNewLine]getResult[I_, K_] := 
           Module[{c, r}, \[IndentingNewLine]c = 
               Cases[wikiResult, {"\<Data:\>" <> NameString[K] <> "\</\>" <> 
-                      WikiPageForInvariant[I], r_} \[RuleDelayed] 
-                  r]; \[IndentingNewLine]If[Length[c] \[Equal] 1, 
+                      WikiPageForInvariant[I], r_} :>
+                  r]; \[IndentingNewLine]If[Length[c] == 1,
               c\[LeftDoubleBracket]1\[RightDoubleBracket], "\<\>"]\
 \[IndentingNewLine]]; \[IndentingNewLine]delegateReadWikiFunction[I_, K_] := 
           With[{result = getResult[I, K]}, \[IndentingNewLine]If[
@@ -457,8 +457,8 @@ Cell[BoxData[
           WikiGetPageTexts[pagenames]; \[IndentingNewLine]getResult[I_, K_] := 
           Module[{c, r}, \[IndentingNewLine]c = 
               Cases[wikiResult, {"\<Data:\>" <> NameString[K] <> "\</\>" <> 
-                      WikiPageForInvariant[I], r_} \[RuleDelayed] 
-                  r]; \[IndentingNewLine]If[Length[c] \[Equal] 1, 
+                      WikiPageForInvariant[I], r_} :>
+                  r]; \[IndentingNewLine]If[Length[c] == 1,
               c\[LeftDoubleBracket]1\[RightDoubleBracket], "\<\>"]\
 \[IndentingNewLine]]; \[IndentingNewLine]delegateReadWikiFunction[I_, K_] := 
           With[{result = getResult[I, K]}, \[IndentingNewLine]If[
@@ -474,7 +474,7 @@ Cell[BoxData[
 
 Cell[BoxData[{
     \(KnotInfoGroup[
-          Knot[n_Integer, _Integer]] /; \((3 \[LessEqual] n \[LessEqual] 
+          Knot[n_Integer, _Integer]] /; \((3 <= n <=
             6)\) := "\<knots=3-6&\>"\), "\[IndentingNewLine]", 
     \(KnotInfoGroup[
         Knot[7, _Integer]] := "\<knots=7&\>"\), "\[IndentingNewLine]", 
@@ -501,8 +501,8 @@ Cell[BoxData[{
 Cell[BoxData[
     \(TrimWhitespace[S_String] := 
       StringReplace[
-        S, {StartOfString ~~ Whitespace \[RuleDelayed] "\<\>", 
-          Whitespace ~~ EndOfString \[RuleDelayed] "\<\>"}]\)], "Input",
+        S, {StartOfString ~~ Whitespace :> "\<\>",
+          Whitespace ~~ EndOfString :> "\<\>"}]\)], "Input",
   InitializationCell->True],
 
 Cell[BoxData[
@@ -525,12 +525,12 @@ Cell[BoxData[
 \("\<>\>" ~~ \(Whitespace ~~ \("\<Name,\>" ~~ \(ShortestMatch[__] ~~ \
 \("\<<br>\>" ~~ \(dt : 
                                   ShortestMatch[__] ~~ \
-"\<</table\>"\)\)\)\)\)\)\) \[RuleDelayed] 
+"\<</table\>"\)\)\)\)\)\)\) :>
                 dt]\)\[LeftDoubleBracket]1\[RightDoubleBracket]; \
 \[IndentingNewLine]StringCases[
           datatable, \ "\<& \>" ~~ \(knotname : 
                   ShortestMatch[__] ~~ \("\< & \>" ~~ \(value : 
-                      ShortestMatch[__] ~~ "\<<br>\>"\)\)\) \[RuleDelayed] \
+                      ShortestMatch[__] ~~ "\<<br>\>"\)\)\) :> \
 {I, Knot[knotname], 
               FromKnotInfoString[
                 TrimWhitespace[value]]}]\[IndentingNewLine]]\)], "Input",
@@ -570,7 +570,7 @@ Cell[BoxData[{
     \(\(Clear[WikiPageForInvariant];\)\), "\n", 
     \(WikiPageForInvariant[I_String] := \(WikiPageForInvariant[I] = 
         Module[{rule = InvariantRule[I], wikiPage}, \[IndentingNewLine]If[
-            rule \[Equal] $Failed, 
+            rule == $Failed,
             Return[$Failed]]; \[IndentingNewLine]wikiPage = "\<WikiPage\>" /. 
               rule; \[IndentingNewLine]If[wikiPage === "\<WikiPage\>", 
             Print["\<Sorry, I don't know how to store the invariant \>" <> 
@@ -588,7 +588,7 @@ ButtonData:>\\\"General::spell1\\\"]\\)\"\>"}]], "Message"]
 }, Open  ]],
 
 Cell[BoxData[
-    \(\(Options[StoreInvariants] = {Write \[Rule] True};\)\)], "Input",
+    \(\(Options[StoreInvariants] = {Write -> True};\)\)], "Input",
   InitializationCell->True],
 
 Cell[BoxData[
@@ -627,7 +627,7 @@ Cell[BoxData[
     \(KnotTheorySetterForInvariant[
         I_String] := \[IndentingNewLine]\(KnotTheorySetterForInvariant[I] = 
         Module[{rule = InvariantRule[I], setter}, \[IndentingNewLine]If[
-            rule \[Equal] $Failed, 
+            rule == $Failed,
             Return[$Failed]]; \[IndentingNewLine]setter = "\<KnotTheorySetter\
 \>" /. rule; \[IndentingNewLine]If[setter === "\<KnotTheorySetter\>", 
             Print["\<Sorry, I don't know how to store the invariant \>" <> 
@@ -686,7 +686,7 @@ invariant \>" <> \
 KnotInvariantURL.\>"]; Return[$Failed]]; \[IndentingNewLine]Off[
           FetchURL::conopen]; \[IndentingNewLine]data = 
           Import[url, "\<Text\>"]; \[IndentingNewLine]If[
-          data \[Equal] $Failed, Return[$Failed]]; \[IndentingNewLine]Return[
+          data == $Failed, Return[$Failed]]; \[IndentingNewLine]Return[
           ParseKnotInvariantFromURL[I, K, 
             data]];\[IndentingNewLine]]\)], "Input",
   InitializationCell->True],
@@ -715,14 +715,14 @@ Cell[BoxData[{
 \>", \(AbsoluteTiming[
               needed = 
                 Cases[RetrieveInvariants[invariants, knots, 
-                    target], {i_, k_, Null} \[RuleDelayed] {i, 
+                    target], {i_, k_, Null} :> {i,
                       k}]]\)\[LeftDoubleBracket]1\[RightDoubleBracket], \
 "\<)\>"]; \[IndentingNewLine]Print["\<Starting to calculate \>", 
           Length[needed], "\< invariants...\>"]; \[IndentingNewLine]While[
           Length[needed] > 0, \[IndentingNewLine]While[
             Length[needed] > 
-                0 \[And] \((timer < interval /. 
-                  Second \[Rule] 1)\), \[IndentingNewLine]workingset = 
+                0 && \((timer < interval /.
+                  Second -> 1)\), \[IndentingNewLine]workingset =
               take[needed, chunksize]; \[IndentingNewLine]counter += 
               Length[workingset]; \[IndentingNewLine]timer += \
 \(AbsoluteTiming[\(failures = 
@@ -735,7 +735,7 @@ Cell[BoxData[{
                 workingset];\[IndentingNewLine]]; \
 \[IndentingNewLine]Print["\<Uploaded \>", counter, "\< invariants in \>", \ 
             timer]; \[IndentingNewLine]If[
-            2  chunksize \[LessEqual] 
+            2  chunksize <=
               counter, \(++chunksize\)]; \[IndentingNewLine]counter = 
             0; \[IndentingNewLine]timer = 
             0\ Second;\[IndentingNewLine]]; \[IndentingNewLine]failures\
@@ -776,9 +776,9 @@ to\ the\ same\ invariant\ and\ \(\(knot\)\(.\)\)*) D =
                   2]] &]; \[IndentingNewLine] (*Take\ only\ the\ \
 \(\(pairs\)\(.\)\)*) P = 
           Select[D, 
-            Length[#] \[Equal] 
+            Length[#] ==
                 2 &]; \[IndentingNewLine] (*Combine\ the\ pairs*) C = 
-          P /. {{I_, K_, 1, V1_}, {I_, K_, 2, V2_}} \[RuleDelayed] {I, K, V1, 
+          P /. {{I_, K_, 1, V1_}, {I_, K_, 2, V2_}} :> {I, K, V1,
                 V2}; \[IndentingNewLine]Select[
           C, #\[LeftDoubleBracket]3\[RightDoubleBracket] =!= #\
 \[LeftDoubleBracket]4\[RightDoubleBracket] &]]\)], "Input",
@@ -788,12 +788,12 @@ Cell[BoxData[
     \(FindMissingData[D1 : {{_String, _, _} ... }, 
         D2 : {{_String, _, _} ... }] := 
       Complement[D1, D2, 
-        SameTest \[Rule] SameQ[Take[#1, 2], Take[#2, 2]] &]\)], "Input",
+        SameTest -> SameQ[Take[#1, 2], Take[#2, 2]] &]\)], "Input",
   InitializationCell->True],
 
 Cell[BoxData[
-    \(\(Options[ProcessKnotAtlasUploadQueue] = {Timeout \[Rule] 42300, 
-          Repeats \[Rule] \[Infinity]};\)\)], "Input",
+    \(\(Options[ProcessKnotAtlasUploadQueue] = {Timeout -> 42300,
+          Repeats -> \[Infinity]};\)\)], "Input",
   InitializationCell->True],
 
 Cell[BoxData[
@@ -804,7 +804,7 @@ Cell[BoxData[
           timeout = \(Timeout /. {opts}\) /. 
               Options[ProcessKnotAtlasUploadQueue]}, \
 \[IndentingNewLine]While[\((\(++n\) < 
-                repeats)\) \[And] \((TimeConstrained[
+                repeats)\) && \((TimeConstrained[
                   ProcessKnotAtlasUploadQueue[pagename, 
                     WikiGetPageText[pagename]], timeout] =!= 
                 Null)\)]\[IndentingNewLine]]\)], "Input",
@@ -817,7 +817,7 @@ Cell[BoxData[
   InitializationCell->True],
 
 Cell[BoxData[
-    \(randomEntry[list_ /; Length[list] \[Equal] 0] := Null\)], "Input",
+    \(randomEntry[list_ /; Length[list] == 0] := Null\)], "Input",
   InitializationCell->True],
 
 Cell[BoxData[
@@ -827,8 +827,8 @@ Cell[BoxData[
             item = randomEntry[
                 StringSplit[contents, 
                   StringExpression[EndOfLine]]]]; \[IndentingNewLine]If[
-          result \[Equal] $Failed, \[IndentingNewLine]WikiStringReplace[
-            pagename, item ~~ EndOfLine \[Rule] "\<\>"]; 
+          result == $Failed, \[IndentingNewLine]WikiStringReplace[
+            pagename, item ~~ EndOfLine -> "\<\>"];
           WikiSetPageText["\<Upload Queues Rejected Items\>", 
             WikiGetPageText["\<Upload Queues Rejected Items\>"] <> "\<\n\>" <> 
               item]\[IndentingNewLine]]; \[IndentingNewLine]result\
@@ -856,8 +856,8 @@ Cell[BoxData[
           StringCases[
             item, "\<*\"\>" ~~ \(invariant : 
                     ShortestMatch[__] ~~ \("\<\", \"\>" ~~ \(knotset : 
-                        ShortestMatch[__] ~~ "\<\"\>"\)\)\) \[RuleDelayed] \
-{invariant, knotset}]; \[IndentingNewLine]If[Length[cases] \[Equal] 0, 
+                        ShortestMatch[__] ~~ "\<\"\>"\)\)\) :> \
+{invariant, knotset}]; \[IndentingNewLine]If[Length[cases] == 0,
           Return[$Failed]]; \
 \[IndentingNewLine]\(ProcessKnotAtlasUploadQueueEntry[pagename, 
               item, #\[LeftDoubleBracket]1\[RightDoubleBracket], #\
@@ -916,8 +916,8 @@ interpret it.\>"];
           TransferUnknownInvariants[{invariant}, 
             globalToExpression[
               knotset], "\<KnotTheory\>", "\<KnotAtlas\>"]; \
-\[IndentingNewLine]If[result \[Equal] {}, 
-          WikiStringReplace[pagename, item ~~ EndOfLine \[Rule] "\<\>"]; 
+\[IndentingNewLine]If[result == {},
+          WikiStringReplace[pagename, item ~~ EndOfLine -> "\<\>"];
           WikiSetPageText["\<Upload Queues Completed Work\>", 
             WikiGetPageText["\<Upload Queues Completed Work\>"] <> "\<\n\>" <> 
               item]]; \[IndentingNewLine]item\[IndentingNewLine]]\)], "Input",\
@@ -1037,7 +1037,7 @@ InputAliases->{"intt"->RowBox[ {"\[Integral]",
           "\[Placeholder]", NotationBoxTag, TagStyle -> 
             "NotationTemplateStyle"], ",", "\[Placeholder]"}], "]"}], 
     "addia"->RowBox[ {"AddInputAlias", "[", 
-        RowBox[ {"\"\[Placeholder]\"", "\[Rule]", 
+        RowBox[ {"\"\[Placeholder]\"", "->",
           TagBox[ 
           "\[Placeholder]", NotationBoxTag, TagStyle -> 
             "NotationTemplateStyle"]}], "]"}], 
@@ -2552,8 +2552,8 @@ options. This is particularly true of Input and Output.\
   
   Cell[StyleData["StandardForm"],
     InputAutoReplacements->{
-      "->"->"\[Rule]", ":>"->"\[RuleDelayed]", "<="->"\[LessEqual]", 
-        ">="->"\[GreaterEqual]", "!="->"\[NotEqual]", "=="->"\[Equal]", 
+      "->"->"->", ":>"->":>", "<="->"<=",
+        ">="->">=", "!="->"!=", "=="->"==",
         Inherited},
     "TwoByteSyntaxCharacterAutoReplacement"->True,
     LineSpacing->{1.25, 0},
@@ -2562,8 +2562,8 @@ options. This is particularly true of Input and Output.\
   
   Cell[StyleData["TraditionalForm"],
     InputAutoReplacements->{
-      "->"->"\[Rule]", ":>"->"\[RuleDelayed]", "<="->"\[LessEqual]", 
-        ">="->"\[GreaterEqual]", "!="->"\[NotEqual]", "=="->"\[Equal]", 
+      "->"->"->", ":>"->":>", "<="->"<=",
+        ">="->">=", "!="->"!=", "=="->"==",
         Inherited},
     "TwoByteSyntaxCharacterAutoReplacement"->True,
     LineSpacing->{1.25, 0},

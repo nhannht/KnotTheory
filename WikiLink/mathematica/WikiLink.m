@@ -61,7 +61,7 @@ WikiLinkDirectory[]=
       DirectoryName[
         File/.Flatten[
             FileInformation[ToFileName[#,"WikiLink.m"]]&/@($Path/.
-                  "."\[Rule]Directory[])]]];
+                  "."->Directory[])]]];
 
 mediawikiConnection;defaultURL="";
 
@@ -100,9 +100,9 @@ WikiConnectionValidQ[]:=
 
 WikiGetPageText::invalid=WikiSetPageText::invalid="You must call CreateWikiConnection before using WikiGetPageText or WikiSetPageText";
 
-WikifyName[name_String]:=StringReplace[name," "\[Rule]"_"]
+WikifyName[name_String]:=StringReplace[name," "->"_"]
 
-UnwikifyName[name_String]:=StringReplace[name,"_"\[Rule]" "]
+UnwikifyName[name_String]:=StringReplace[name,"_"->" "]
 
 WikiGetPageText[name_String]:=
   If[WikiConnectionValidQ[],mediawikiConnection@getPageText[WikifyName[name]],
@@ -113,9 +113,9 @@ WikiGetPageTexts[names:{__String}]:=
     Module[{results,getResult,wikinames=WikifyName/@names},
       results=mediawikiConnection@getPageTexts[wikinames];
       getResult[name_]:=Module[{c,r},
-          c=Cases[results,{WikifyName[name],r_}\[RuleDelayed]r];
+          c=Cases[results,{WikifyName[name],r_}:>r];
           
-          If[Length[c]\[Equal]1,c\[LeftDoubleBracket]1\[RightDoubleBracket],
+          If[Length[c]==1,c\[LeftDoubleBracket]1\[RightDoubleBracket],
             ""]
           ];
       {#,getResult[#]}&/@names
@@ -152,8 +152,8 @@ WikiUploadFile[name_String,description_String]:=
 WikiUserName[]:=Module[{text,cases},
     If[!WikiSetPageText["Who_Am_I","--~~~"],Return[$Failed]];
     text=WikiGetPageText["Who_Am_I"];
-    cases=StringCases[text,"--[[User:"~~x__~~"|"~~x__~~"]]"\[RuleDelayed]x];
-    If[Length[cases]\[Equal]1,
+    cases=StringCases[text,"--[[User:"~~x__~~"|"~~x__~~"]]":>x];
+    If[Length[cases]==1,
       Return[cases\[LeftDoubleBracket]1\[RightDoubleBracket]]];
     Return[$Failed];
     ]
@@ -220,9 +220,9 @@ nextPageURL[hostname_,baseURL_,text_,initialText_:""]:=
         "<a href=\""~~nextURL:(baseURL~~
                     "?title=Special:Allpages&amp;from="~~initialText~~
                         ShortestMatch[__])~~
-              "\" title=\"Special:Allpages\">Next page"\[RuleDelayed]"http://"<>
+              "\" title=\"Special:Allpages\">Next page":>"http://"<>
             hostname<>StringReplace[nextURL,"&amp;"->"&"],1];
-    If[Length[candidates]\[Equal]0,$Failed,
+    If[Length[candidates]==0,$Failed,
       candidates\[LeftDoubleBracket]1\[RightDoubleBracket]]
     ]
 
@@ -234,15 +234,15 @@ WikiAllPages[hostname_String,baseURL_String:"/w/index.php",
         "http://"<>hostname<>baseURL<>"?title=Special%3AAllpages&from="<>
           initialText<>"&namespace="<>ToString[nameSpaceNumber],
       allPagesText},
-    While[allPagesURL=!=$Failed\[And]Length[pages]\[LessEqual]maxPages,
+    While[allPagesURL=!=$Failed&&Length[pages]<=maxPages,
       Print["Looking at: "<>allPagesURL];
       allPagesText=Import[allPagesURL,"Text"];
-      If[allPagesText\[Equal]$Failed,Continue[]];
+      If[allPagesText==$Failed,Continue[]];
       allPagesURL=nextPageURL[hostname,baseURL,allPagesText,initialText];
       newPages=
         StringCases[allPagesText,
           "title=\""~~pagename:(((nameSpace~~":")|"")~~
-                      initialText~~ShortestMatch[__])~~"\""\[RuleDelayed]
+                      initialText~~ShortestMatch[__])~~"\"":>
             pagename];
       Print["Found "<>ToString[Length[newPages]]<>" more pages."];
       pages=pages~Join~newPages;

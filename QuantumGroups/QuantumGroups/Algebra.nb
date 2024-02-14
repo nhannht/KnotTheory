@@ -213,7 +213,7 @@ Cell[BoxData[
     RowBox[{"n_", "?", 
      RowBox[{"(", 
       RowBox[{
-       RowBox[{"#", "\[GreaterEqual]", "2"}], "&"}], ")"}]}]}], "]"}], ":=", 
+       RowBox[{"#", ">=", "2"}], "&"}], ")"}]}]}], "]"}], ":=",
   RowBox[{"NonCommutativeMultiply", "@@", 
    RowBox[{"Table", "[", 
     RowBox[{"x", ",", 
@@ -335,7 +335,7 @@ Cell[BoxData[
   RowBox[{
    RowBox[{"\[CapitalDelta]", "[", "Z", "]"}], "/.", 
    RowBox[{
-    RowBox[{"X_", "\[CircleTimes]", "Y_"}], "\[RuleDelayed]", 
+    RowBox[{"X_", "\[CircleTimes]", "Y_"}], ":>",
     RowBox[{"Y", "\[CircleTimes]", "X"}]}]}]}]], "Input",
  InitializationCell->True],
 
@@ -470,7 +470,7 @@ Cell[BoxData[{
       RowBox[{
        RowBox[{
         RowBox[{"OperatorWeight", "[", "\[CapitalGamma]", "]"}], "[", "A", 
-        "]"}], "\[Equal]", 
+        "]"}], "==",
        RowBox[{
         RowBox[{"OperatorWeight", "[", "\[CapitalGamma]", "]"}], "[", "B", 
         "]"}]}], ")"}]}], ":=", 
@@ -489,7 +489,7 @@ Cell[BoxData[{
        RowBox[{
         RowBox[{"OperatorWeight", "[", "\[CapitalGamma]", "]"}], "/@", 
         RowBox[{"(", 
-         RowBox[{"List", "@@", "A"}], ")"}]}], "]"}], "]"}], "\[Equal]", 
+         RowBox[{"List", "@@", "A"}], ")"}]}], "]"}], "]"}], "==",
      "1"}], ")"}]}], ":=", 
   RowBox[{
    RowBox[{"OperatorWeight", "[", "\[CapitalGamma]", "]"}], "[", 

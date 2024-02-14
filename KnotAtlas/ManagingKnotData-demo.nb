@@ -854,7 +854,7 @@ Cell[BoxData[
 Cell[CellGroupData[{
 
 Cell[BoxData[
-    \(StoreInvariants[data, "\<KnotAtlas\>", Write \[Rule] False]\)], "Input"],
+    \(StoreInvariants[data, "\<KnotAtlas\>", Write -> False]\)], "Input"],
 
 Cell[BoxData[
     \({{"Data:0_1/Next_Knot", "3_1"}, {"Data:3_1/Next_Knot", 

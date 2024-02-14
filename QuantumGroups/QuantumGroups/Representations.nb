@@ -250,9 +250,9 @@ Cell[BoxData[
          RowBox[{"m", "=", 
           RowBox[{"GreatestMultiplicityAfterLowerings", "[", 
            RowBox[{"\[CapitalGamma]", ",", "\[Lambda]", ",", "k"}], "]"}]}], 
-         ")"}], "\[Equal]", "1"}], ",", 
+         ")"}], "==", "1"}], ",",
        RowBox[{"++", "k"}]}], "]"}], ";", "\[IndentingNewLine]", 
-     RowBox[{"m", "\[Equal]", 
+     RowBox[{"m", "==",
       RowBox[{"-", "\[Infinity]"}]}]}]}], "\[IndentingNewLine]", 
    "]"}]}]], "Input",
  CellChangeTimes->{{3.412991259323704*^9, 3.4129913356734896`*^9}}],
@@ -344,7 +344,7 @@ Cell[BoxData[
        RowBox[{"\[CapitalGamma]", ",", "V"}], "]"}], ",", 
       RowBox[{
        RowBox[{"{", 
-        RowBox[{"\[Mu]", ",", "n_"}], "}"}], "\[RuleDelayed]", "n"}]}], 
+        RowBox[{"\[Mu]", ",", "n_"}], "}"}], ":>", "n"}]}],
      "]"}]}]}]}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.446832952458647*^9, 3.446832955922299*^9}}],
@@ -548,7 +548,7 @@ Cell[BoxData[
      RowBox[{
       RowBox[{
        RowBox[{"#1", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], 
-       "\[Equal]", 
+       "==",
        RowBox[{"#2", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}],
        "&"}]}], "]"}]}]}]], "Input",
  InitializationCell->True],
@@ -648,7 +648,7 @@ Cell[BoxData[
          RowBox[{"\[CapitalGamma]", ",", "V"}], "]"}], "/.", 
         RowBox[{
          RowBox[{"{", 
-          RowBox[{"\[Lambda]_", ",", "n_Integer"}], "}"}], "\[RuleDelayed]", 
+          RowBox[{"\[Lambda]_", ",", "n_Integer"}], "}"}], ":>",
          RowBox[{"n", " ", 
           SuperscriptBox["q", 
            RowBox[{
@@ -732,13 +732,13 @@ Cell[BoxData[
         RowBox[{"(", 
          RowBox[{"sum", "/.", 
           RowBox[{"{", 
-           RowBox[{"q", "\[Rule]", 
+           RowBox[{"q", "->",
             SuperscriptBox["q", 
              RowBox[{"-", "1"}]]}], "}"}]}], ")"}], "-", 
         RowBox[{"(", 
          RowBox[{"sum", "/.", 
           RowBox[{"{", 
-           RowBox[{"q", "\[Rule]", "0"}], "}"}]}], ")"}]}], "]"}]}]}], 
+           RowBox[{"q", "->", "0"}], "}"}]}], ")"}]}], "]"}]}]}],
     "\[IndentingNewLine]", "]"}]}]}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.4130034217323885`*^9, 3.4130034948274946`*^9}, {

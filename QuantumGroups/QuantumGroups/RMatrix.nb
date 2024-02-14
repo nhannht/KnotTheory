@@ -471,7 +471,7 @@ Cell[BoxData[
           RowBox[{"\[Lambda]", "+", 
            RowBox[{
             RowBox[{"OperatorWeight", "[", "\[CapitalGamma]", "]"}], "[", "X",
-             "]"}]}]}], "]"}], "\[Equal]", "0"}], ",", 
+             "]"}]}]}], "]"}], "==", "0"}], ",",
        RowBox[{"Return", "[", 
         RowBox[{"ZeroesMatrix", "[", 
          RowBox[{
@@ -495,7 +495,7 @@ Cell[BoxData[
           RowBox[{"\[Lambda]", "+", 
            RowBox[{
             RowBox[{"OperatorWeight", "[", "\[CapitalGamma]", "]"}], "[", "Y",
-             "]"}]}]}], "]"}], "\[Equal]", "0"}], ",", 
+             "]"}]}]}], "]"}], "==", "0"}], ",",
        RowBox[{"Return", "[", 
         RowBox[{"ZeroesMatrix", "[", 
          RowBox[{

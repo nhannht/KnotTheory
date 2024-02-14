@@ -108,7 +108,7 @@ CheckRepresentationTensor[F:RepresentationTensor[\[CapitalGamma]_,_,_,V_,_,_]]:=
 RepresentationTensor/:RepresentationTensor[\[CapitalGamma]_,V_,_,W_,_,matrices_][\[Lambda]_]:=(Cases[matrices,{\[Lambda],m_Matrix}:>m]~Join~{ZeroesMatrix[WeightMultiplicity[\[CapitalGamma],V,\[Lambda]],WeightMultiplicity[\[CapitalGamma],W,\[Lambda]]]})[[1]]
 
 
-RepresentationTensor/:Plus[t__RepresentationTensor]/;(SameQ[Codomain/@{t}]\[And]SameQ[Domain/@{t}]\[And]SameQ[CodomainBasis/@{t}]\[And]SameQ[DomainBasis/@{t}]\[And]SameQ[Algebra/@{t}]):=Module[{t1,\[CapitalGamma],domain,\[Lambda]},
+RepresentationTensor/:Plus[t__RepresentationTensor]/;(SameQ[Codomain/@{t}]&&SameQ[Domain/@{t}]&&SameQ[CodomainBasis/@{t}]&&SameQ[DomainBasis/@{t}]&&SameQ[Algebra/@{t}]):=Module[{t1,\[CapitalGamma],domain,\[Lambda]},
 t1=First[{t}];
 \[CapitalGamma]=Algebra[t1];
 domain=Domain[t1];

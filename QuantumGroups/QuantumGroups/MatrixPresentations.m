@@ -77,7 +77,7 @@ MatrixPresentation[\[CapitalGamma]_][Subscript[K, i_]][V_,_,\[Lambda]_]:=q^(Cart
 MatrixPresentation[\[CapitalGamma]_][Subscript[K, i_]^-1][V_,_,\[Lambda]_]:=q^(-CartanFactors[\[CapitalGamma]][[i]]\[Lambda][[i]]) identityMatrix[WeightMultiplicity[\[CapitalGamma],V,\[Lambda]]]
 
 
-MatrixPresentation[\[CapitalGamma]_][A:(SuperPlus[Subscript[X, _]]|SuperMinus[Subscript[X, _]])][Irrep[\[CapitalGamma]_][\[Mu]_],\[Beta]_,\[Lambda]_]/;(ZeroVectorQ[\[Mu]]\[And]Length[\[Mu]]==Rank[\[CapitalGamma]]\[And]Length[\[Lambda]]==Rank[\[CapitalGamma]]):=If[ZeroVectorQ[\[Lambda]],ZeroesMatrix[0,1],ZeroesMatrix[WeightMultiplicity[\[CapitalGamma],Irrep[\[CapitalGamma]][\[Mu]],\[Lambda]+OperatorWeight[\[CapitalGamma]][A]],0]]
+MatrixPresentation[\[CapitalGamma]_][A:(SuperPlus[Subscript[X, _]]|SuperMinus[Subscript[X, _]])][Irrep[\[CapitalGamma]_][\[Mu]_],\[Beta]_,\[Lambda]_]/;(ZeroVectorQ[\[Mu]]&&Length[\[Mu]]==Rank[\[CapitalGamma]]&&Length[\[Lambda]]==Rank[\[CapitalGamma]]):=If[ZeroVectorQ[\[Lambda]],ZeroesMatrix[0,1],ZeroesMatrix[WeightMultiplicity[\[CapitalGamma],Irrep[\[CapitalGamma]][\[Mu]],\[Lambda]+OperatorWeight[\[CapitalGamma]][A]],0]]
 
 
 MatrixPresentation[\[CapitalGamma]_][A:(SuperPlus[Subscript[X, _]]|SuperMinus[Subscript[X, _]])][V_,\[Beta]_,\[Lambda]_]/;MinusculeRepresentationQ[\[CapitalGamma],V]:=OnesMatrix[WeightMultiplicity[\[CapitalGamma],V,\[Lambda]+OperatorWeight[\[CapitalGamma]][A]],WeightMultiplicity[\[CapitalGamma],V,\[Lambda]]]
@@ -233,7 +233,7 @@ ChangeOfBasisMatrix[\[CapitalGamma]_][V:Irrep[\[CapitalGamma]_][_],FundamentalBa
 ChangeOfBasisMatrix[\[CapitalGamma]_][V_,\[Beta]_,\[Beta]_,\[Lambda]_]:=identityMatrix[WeightMultiplicity[\[CapitalGamma],V,\[Lambda]]]
 
 
-MatrixPresentation[\[CapitalGamma]_][A:(SuperPlus[Subscript[X, _]]|SuperMinus[Subscript[X, _]])][Irrep[\[CapitalGamma]_][\[Lambda]_],ShortRootBasis,\[Kappa]_]/;UnitVectorQ[\[Lambda]]\[And]ShortDominantRootQ[\[CapitalGamma],\[Lambda]]:=MatrixPresentation[\[CapitalGamma]][A][Irrep[\[CapitalGamma]][\[Lambda]],ShortRootBasis,\[Mu]]=Module[{x,h,s,d,kf,action,basis},
+MatrixPresentation[\[CapitalGamma]_][A:(SuperPlus[Subscript[X, _]]|SuperMinus[Subscript[X, _]])][Irrep[\[CapitalGamma]_][\[Lambda]_],ShortRootBasis,\[Kappa]_]/;UnitVectorQ[\[Lambda]]&&ShortDominantRootQ[\[CapitalGamma],\[Lambda]]:=MatrixPresentation[\[CapitalGamma]][A][Irrep[\[CapitalGamma]][\[Lambda]],ShortRootBasis,\[Mu]]=Module[{x,h,s,d,kf,action,basis},
 Subscript[s, i_]:=SimpleRoots[\[CapitalGamma]][[i]];
 Subscript[d, i_]:=CartanFactors[\[CapitalGamma]][[i]];
 kf=KillingForm[\[CapitalGamma]];
@@ -249,7 +249,7 @@ Matrix[Length[\[Beta]2],Length[\[Beta]1],Coefficient[action[A]/@\[Beta]1,#]&/@\[
 ]
 
 
-MatrixPresentation[\[CapitalGamma]_][A:(SuperPlus[Subscript[X, _]]|SuperMinus[Subscript[X, _]])][V:Irrep[\[CapitalGamma]_][\[Lambda]_],FundamentalBasis,\[Kappa]_]/;UnitVectorQ[\[Lambda]]\[And]ShortDominantRootQ[\[CapitalGamma],\[Lambda]]:=MatrixPresentation[\[CapitalGamma]][A][V,FundamentalBasis,\[Kappa]]=ChangeOfBasisMatrix[\[CapitalGamma]][V,FundamentalBasis,ShortRootBasis,\[Kappa]+OperatorWeight[\[CapitalGamma]][A]].MatrixPresentation[\[CapitalGamma]][A][V,ShortRootBasis,\[Kappa]].ChangeOfBasisMatrix[\[CapitalGamma]][V,ShortRootBasis,FundamentalBasis,\[Kappa]]
+MatrixPresentation[\[CapitalGamma]_][A:(SuperPlus[Subscript[X, _]]|SuperMinus[Subscript[X, _]])][V:Irrep[\[CapitalGamma]_][\[Lambda]_],FundamentalBasis,\[Kappa]_]/;UnitVectorQ[\[Lambda]]&&ShortDominantRootQ[\[CapitalGamma],\[Lambda]]:=MatrixPresentation[\[CapitalGamma]][A][V,FundamentalBasis,\[Kappa]]=ChangeOfBasisMatrix[\[CapitalGamma]][V,FundamentalBasis,ShortRootBasis,\[Kappa]+OperatorWeight[\[CapitalGamma]][A]].MatrixPresentation[\[CapitalGamma]][A][V,ShortRootBasis,\[Kappa]].ChangeOfBasisMatrix[\[CapitalGamma]][V,ShortRootBasis,FundamentalBasis,\[Kappa]]
 
 
 IrrepContainmentRules={
@@ -360,12 +360,12 @@ RowBox[{"1", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0
 RowBox[{"\[CircleTimes]", "2"}]]\),
 Irrep[Subscript[E, 8]][{0,0,0,0,1,0,0,0}]->Irrep[Subscript[E, 8]][{0,1,0,0,0,0,0,0}]\[CircleTimes]Irrep[Subscript[E, 8]][{1,0,0,0,0,0,0,0}],
 Irrep[Subscript[E, 8]][{0,0,0,1,0,0,0,0}]->Irrep[Subscript[E, 8]][{0,0,1,0,0,0,0,0}]\[CircleTimes]Irrep[Subscript[E, 8]][{1,0,0,0,0,0,0,0}],
-Irrep[\[CapitalGamma]_][\[Lambda]_]/;(!UnitVectorQ[\[Lambda]]\[And]!ZeroVectorQ[\[Lambda]]):>Module[{n=Rank[\[CapitalGamma]],pos,\[Mu]},pos=Position[\[Lambda],_?(#!=0&)][[1,1]];\[Mu]=UnitVector[n,pos];
+Irrep[\[CapitalGamma]_][\[Lambda]_]/;(!UnitVectorQ[\[Lambda]]&&!ZeroVectorQ[\[Lambda]]):>Module[{n=Rank[\[CapitalGamma]],pos,\[Mu]},pos=Position[\[Lambda],_?(#!=0&)][[1,1]];\[Mu]=UnitVector[n,pos];
 Irrep[\[CapitalGamma]][\[Lambda]-\[Mu]]\[CircleTimes]Irrep[\[CapitalGamma]][\[Mu]]]
 };
 
 
-MatrixPresentation[\[CapitalGamma]_][A:(SuperPlus[Subscript[X, _]]|SuperMinus[Subscript[X, _]])][V:Irrep[\[CapitalGamma]_][\[Mu]_],FundamentalBasis,\[Lambda]_]/;\[Not]ZeroVectorQ[\[Mu]]\[And]\[Not]UnitVectorQ[\[Mu]]\[Or](\[Not]ShortDominantRootQ[\[CapitalGamma],\[Mu]]\[And]\[Not]MinusculeRepresentationQ[\[CapitalGamma],V]):=Module[{W=V/.IrrepContainmentRules,p,result},MatrixPresentation[\[CapitalGamma]][A][V,FundamentalBasis,\[Lambda]]=
+MatrixPresentation[\[CapitalGamma]_][A:(SuperPlus[Subscript[X, _]]|SuperMinus[Subscript[X, _]])][V:Irrep[\[CapitalGamma]_][\[Mu]_],FundamentalBasis,\[Lambda]_]/;\[Not]ZeroVectorQ[\[Mu]]&&\[Not]UnitVectorQ[\[Mu]]\[Or](\[Not]ShortDominantRootQ[\[CapitalGamma],\[Mu]]&&\[Not]MinusculeRepresentationQ[\[CapitalGamma],V]):=Module[{W=V/.IrrepContainmentRules,p,result},MatrixPresentation[\[CapitalGamma]][A][V,FundamentalBasis,\[Lambda]]=
 (DebugPrintHeld["Calculating ",MatrixPresentation[\[CapitalGamma]][A][V,FundamentalBasis,\[Lambda]], " by looking at ",V," as a subrep of ",Evaluate[W]];
 If[W==V,Print["Warning, couldn't work out how to find matrix presentations for ",V];Return[$Failed]];
 p=Position[DecomposeRepresentation[\[CapitalGamma]][W],V][[1,1]];
@@ -385,7 +385,7 @@ autopackagingMatrixPresentations=True;
 
 ReportSavedMatrixPresentation[\[CapitalGamma]_][A_][V_,\[Beta]_,\[Lambda]_]:=Module[{},
 ++numberOfSavedMatrixPresentations[\[CapitalGamma]];
-If[autopackagingMatrixPresentations\[And]Mod[numberOfSavedMatrixPresentations[\[CapitalGamma]],10]==0,
+If[autopackagingMatrixPresentations&&Mod[numberOfSavedMatrixPresentations[\[CapitalGamma]],10]==0,
 PackageMatrixPresentations[\[CapitalGamma]]
 ];
 ]

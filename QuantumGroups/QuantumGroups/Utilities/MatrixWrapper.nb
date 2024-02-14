@@ -51,12 +51,12 @@ Cell[BoxData[{
     RowBox[{
      RowBox[{"UnitVector", "[", 
       RowBox[{"n_Integer", ",", "k_Integer"}], "]"}], "/;", 
-     RowBox[{"1", "\[LessEqual]", "k", "\[LessEqual]", "n"}]}], ":=", 
+     RowBox[{"1", "<=", "k", "<=", "n"}]}], ":=",
     RowBox[{"Table", "[", 
      RowBox[{
       RowBox[{"If", "[", 
        RowBox[{
-        RowBox[{"i", "\[Equal]", "k"}], ",", "1", ",", "0"}], "]"}], ",", 
+        RowBox[{"i", "==", "k"}], ",", "1", ",", "0"}], "]"}], ",",
       RowBox[{"{", 
        RowBox[{"i", ",", "1", ",", "n"}], "}"}]}], "]"}]}]}], 
   "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
@@ -68,11 +68,11 @@ Cell[BoxData[{
     RowBox[{"Complement", "[", 
      RowBox[{"v", ",", 
       RowBox[{"{", 
-       RowBox[{"0", ",", "1"}], "}"}]}], "]"}], "\[Equal]", 
-    RowBox[{"{", "}"}]}], "\[And]", 
+       RowBox[{"0", ",", "1"}], "}"}]}], "]"}], "==",
+    RowBox[{"{", "}"}]}], "&&",
    RowBox[{
     RowBox[{"Count", "[", 
-     RowBox[{"v", ",", "1"}], "]"}], "\[Equal]", "1"}]}]}]}], "Input",
+     RowBox[{"v", ",", "1"}], "]"}], "==", "1"}]}]}]}], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.4094372742504177`*^9, 3.4094372858871503`*^9}}],
 
@@ -237,14 +237,14 @@ Cell[BoxData[{
     RowBox[{
      RowBox[{
       RowBox[{"Dimensions", "[", "m", "]"}], "\[LeftDoubleBracket]", "2", 
-      "\[RightDoubleBracket]"}], "\[Equal]", 
+      "\[RightDoubleBracket]"}], "==",
      RowBox[{"Length", "[", "v", "]"}]}], ")"}]}], ":=", 
   RowBox[{"If", "[", 
    RowBox[{
     RowBox[{
      RowBox[{
       RowBox[{"Dimensions", "[", "m", "]"}], "\[LeftDoubleBracket]", "1", 
-      "\[RightDoubleBracket]"}], "\[Equal]", "0"}], ",", 
+      "\[RightDoubleBracket]"}], "==", "0"}], ",",
     RowBox[{"{", "}"}], ",", 
     RowBox[{
      RowBox[{"MatrixData", "[", "m", "]"}], ".", "v"}]}], 
@@ -257,7 +257,7 @@ Cell[BoxData[{
     RowBox[{
      RowBox[{
       RowBox[{"Dimensions", "[", "m1", "]"}], "\[LeftDoubleBracket]", "2", 
-      "\[RightDoubleBracket]"}], "\[Equal]", 
+      "\[RightDoubleBracket]"}], "==",
      RowBox[{"Length", "[", "m2", "]"}]}], ")"}]}], ":=", 
   RowBox[{
    RowBox[{"MatrixData", "[", "m1", "]"}], ".", "m2"}]}]}], "Input",
@@ -608,13 +608,13 @@ Cell[BoxData[
          RowBox[{"Dimensions", "/@", 
           RowBox[{"{", 
            RowBox[{"m1", ",", "m2"}], "}"}]}], "]"}], ",", "0"}], "]"}]}], 
-     "\[And]", 
+     "&&",
      RowBox[{
       RowBox[{"Most", "[", 
        RowBox[{"Last", "/@", 
         RowBox[{"Dimensions", "/@", 
          RowBox[{"{", 
-          RowBox[{"m1", ",", "m2"}], "}"}]}]}], "]"}], "\[Equal]", 
+          RowBox[{"m1", ",", "m2"}], "}"}]}]}], "]"}], "==",
       RowBox[{"Rest", "[", 
        RowBox[{"First", "/@", 
         RowBox[{"Dimensions", "/@", 
@@ -718,7 +718,7 @@ Cell[BoxData[
  RowBox[{
   RowBox[{"If", "[", 
    RowBox[{
-    RowBox[{"$VersionNumber", "\[GreaterEqual]", "6"}], ",", 
+    RowBox[{"$VersionNumber", ">=", "6"}], ",",
     RowBox[{"BlockMatrix", "=", "ArrayFlatten"}]}], "]"}], ";"}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.431228865157462*^9, 3.4312288760030575`*^9}}],
@@ -733,9 +733,9 @@ Cell[BoxData[
      RowBox[{"Matrix", "[", 
       RowBox[{"r2_", ",", "c2_", ",", "data2_"}], "]"}]}], "]"}], "/;", 
    RowBox[{
-    RowBox[{"r1", ">", "0"}], "\[And]", 
-    RowBox[{"r2", ">", "0"}], "\[And]", 
-    RowBox[{"c1", ">", "0"}], "\[And]", 
+    RowBox[{"r1", ">", "0"}], "&&",
+    RowBox[{"r2", ">", "0"}], "&&",
+    RowBox[{"c1", ">", "0"}], "&&",
     RowBox[{"c2", ">", "0"}]}]}], ":=", 
   RowBox[{"Matrix", "[", 
    RowBox[{
@@ -939,16 +939,16 @@ Cell[BoxData[
 Cell[BoxData[
  RowBox[{"If", "[", 
   RowBox[{
-   RowBox[{"$VersionNumber", "\[GreaterEqual]", "6"}], ",", 
+   RowBox[{"$VersionNumber", ">=", "6"}], ",",
    RowBox[{
     RowBox[{"SquareMatrixQ", "[", "m_", "]"}], ":=", 
     RowBox[{"(", 
      RowBox[{
-      RowBox[{"MatrixQ", "[", "m", "]"}], "\[And]", 
+      RowBox[{"MatrixQ", "[", "m", "]"}], "&&",
       RowBox[{
        RowBox[{
         RowBox[{"Dimensions", "[", "m", "]"}], "\[LeftDoubleBracket]", "1", 
-        "\[RightDoubleBracket]"}], "\[Equal]", 
+        "\[RightDoubleBracket]"}], "==",
        RowBox[{
         RowBox[{"Dimensions", "[", "m", "]"}], "\[LeftDoubleBracket]", "2", 
         "\[RightDoubleBracket]"}]}]}], ")"}]}]}], "]"}]], "Input",
@@ -973,7 +973,7 @@ Cell[BoxData[
   RowBox[{"If", "[", 
    RowBox[{
     RowBox[{
-     RowBox[{"Length", "[", "m", "]"}], "\[GreaterEqual]", 
+     RowBox[{"Length", "[", "m", "]"}], ">=",
      "InterpolationInverseThreshold"}], ",", 
     RowBox[{"RowOrderedInterpolationInverse", "[", "m", "]"}], ",", 
     RowBox[{"RowReductionInverse", "[", "m", "]"}]}], "]"}]}]], "Input",
@@ -993,7 +993,7 @@ Cell[BoxData[
      RowBox[{"If", "[", 
       RowBox[{
        RowBox[{
-        RowBox[{"Length", "[", "m", "]"}], "\[GreaterEqual]", "8"}], ",", 
+        RowBox[{"Length", "[", "m", "]"}], ">=", "8"}], ",",
        RowBox[{"DebugPrint", "[", 
         RowBox[{
         "\"\<Performing (built-in) row reduction on a matrix of size \>\"", 
@@ -1003,12 +1003,12 @@ Cell[BoxData[
       RowBox[{"Together", "[", 
        RowBox[{"Inverse", "[", 
         RowBox[{"m", ",", 
-         RowBox[{"Method", "\[Rule]", "\"\<OneStepRowReduction\>\""}]}], 
+         RowBox[{"Method", "->", "\"\<OneStepRowReduction\>\""}]}],
         "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
      RowBox[{"If", "[", 
       RowBox[{
        RowBox[{
-        RowBox[{"Length", "[", "m", "]"}], "\[GreaterEqual]", "8"}], ",", 
+        RowBox[{"Length", "[", "m", "]"}], ">=", "8"}], ",",
        RowBox[{"DebugPrint", "[", "\"\<Finished row reduction\>\"", "]"}]}], 
       "]"}], ";", "\[IndentingNewLine]", "result"}]}], "\[IndentingNewLine]", 
    "]"}]}]], "Input",
@@ -1085,7 +1085,7 @@ Cell[BoxData[
   RowBox[{"If", "[", 
    RowBox[{
     RowBox[{
-     RowBox[{"Length", "[", "mat", "]"}], "\[GreaterEqual]", 
+     RowBox[{"Length", "[", "mat", "]"}], ">=",
      "InterpolationInverseLargestRequestSize"}], ",", 
     RowBox[{
      RowBox[{"DebugPrint", "[", 
@@ -1145,7 +1145,7 @@ Cell[BoxData[
        "]"}]}], ";", "\[IndentingNewLine]", 
      RowBox[{"If", "[", 
       RowBox[{
-       RowBox[{"degree", "\[Equal]", "0"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"degree", "==", "0"}], ",", "\[IndentingNewLine]",
        RowBox[{
         RowBox[{"Global`interpolationInverseNoQExample", "=", "mat"}], ";", 
         "\[IndentingNewLine]", 
@@ -1180,7 +1180,7 @@ Inverse\>\"", "]"}], ";", "\[IndentingNewLine]",
         RowBox[{"Return", "[", 
          RowBox[{"Inverse", "[", 
           RowBox[{"mat", ",", 
-           RowBox[{"Method", "\[Rule]", "OneStepRowReduction"}]}], "]"}], 
+           RowBox[{"Method", "->", "OneStepRowReduction"}]}], "]"}],
          "]"}]}]}], "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
      RowBox[{"recordInterpolationInverseRequest", "[", "mat", "]"}], ";", 
      "\[IndentingNewLine]", 
@@ -1207,7 +1207,7 @@ Inverse\>\"", "]"}], ";", "\[IndentingNewLine]",
           RowBox[{
            RowBox[{"(", 
             RowBox[{"det", "/.", 
-             RowBox[{"Global`q", "\[Rule]", "n"}]}], ")"}], "=!=", "0"}], ",", 
+             RowBox[{"Global`q", "->", "n"}]}], ")"}], "=!=", "0"}], ",",
           RowBox[{"abcissa", "=", 
            RowBox[{"Append", "[", 
             RowBox[{"abcissa", ",", "n"}], "]"}]}]}], "]"}], ";", 
@@ -1232,7 +1232,7 @@ Inverse\>\"", "]"}], ";", "\[IndentingNewLine]",
              RowBox[{"DebugPrint", "[", "i", "]"}]}], "]"}], ";", 
            RowBox[{"Inverse", "[", 
             RowBox[{"newMatrix", "/.", 
-             RowBox[{"Global`q", "\[Rule]", 
+             RowBox[{"Global`q", "->",
               RowBox[{
               "abcissa", "\[LeftDoubleBracket]", "i", 
                "\[RightDoubleBracket]"}]}]}], "]"}]}], ",", 
@@ -1255,7 +1255,7 @@ Inverse\>\"", "]"}], ";", "\[IndentingNewLine]",
          RowBox[{"If", "[", 
           RowBox[{
            RowBox[{
-            RowBox[{"j", "\[Equal]", "1"}], "\[And]", 
+            RowBox[{"j", "==", "1"}], "&&",
             RowBox[{"size", ">", "20"}]}], ",", 
            RowBox[{"DebugPrint", "[", "i", "]"}]}], "]"}], ";", 
          RowBox[{"Simplify", "[", 

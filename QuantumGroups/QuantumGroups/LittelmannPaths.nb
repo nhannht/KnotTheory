@@ -224,7 +224,7 @@ Cell[BoxData[
         RowBox[{"v1", ".", "v2"}], ")"}], "2"], "-", 
       RowBox[{
        RowBox[{"v1", ".", "v1"}], " ", 
-       RowBox[{"v2", ".", "v2"}]}]}], "]"}], "\[Equal]", "0"}], "\[And]", 
+       RowBox[{"v2", ".", "v2"}]}]}], "]"}], "==", "0"}], "&&",
    RowBox[{
     RowBox[{"v1", ".", "v2"}], ">", "0"}]}]}]], "Input",
  InitializationCell->True],
@@ -570,7 +570,7 @@ Cell[BoxData[
        RowBox[{"Cases", "[", 
         RowBox[{"compositions", ",", 
          RowBox[{
-          RowBox[{"lp_", "?", "LittelmannPathDominantQ"}], "\[RuleDelayed]", 
+          RowBox[{"lp_", "?", "LittelmannPathDominantQ"}], ":>",
           RowBox[{
            RowBox[{"Irrep", "[", "\[CapitalGamma]", "]"}], "[", 
            RowBox[{"LittelmannPathEndpoint", "[", "lp", "]"}], "]"}]}]}], 
@@ -614,7 +614,7 @@ Cell[BoxData[
        RowBox[{"Cases", "[", 
         RowBox[{"compositions", ",", 
          RowBox[{
-          RowBox[{"lp_", "?", "LittelmannPathDominantQ"}], "\[RuleDelayed]", 
+          RowBox[{"lp_", "?", "LittelmannPathDominantQ"}], ":>",
           RowBox[{
            RowBox[{"Irrep", "[", "\[CapitalGamma]", "]"}], "[", 
            RowBox[{"LittelmannPathEndpoint", "[", "lp", "]"}], "]"}]}]}], 
@@ -669,7 +669,7 @@ InputAliases->{"notation" -> RowBox[{"Notation", "[",
        "\[Placeholder]", NotationBoxTag, TagStyle -> "NotationTemplateStyle"],
         ",", "\[Placeholder]"}], "]"}], "addia" -> 
   RowBox[{"AddInputAlias", "[", 
-     RowBox[{"\"\[Placeholder]\"", "\[Rule]", 
+     RowBox[{"\"\[Placeholder]\"", "->",
        TagBox[
        "\[Placeholder]", NotationBoxTag, TagStyle -> 
         "NotationTemplateStyle"]}], "]"}], "pattwraper" -> 

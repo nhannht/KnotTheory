@@ -73,8 +73,8 @@ Cell[BoxData[
        RowBox[{
         RowBox[{"pattern_", "/;", 
          RowBox[{"FreeQ", "[", 
-          RowBox[{"pattern", ",", "Blank"}], "]"}]}], "\[RuleDelayed]", "_"}],
-        ")"}]}], "\[RuleDelayed]", "rule"}]}], "]"}]}]], "Input",
+          RowBox[{"pattern", ",", "Blank"}], "]"}]}], ":>", "_"}],
+        ")"}]}], ":>", "rule"}]}], "]"}]}]], "Input",
  InitializationCell->True],
 
 Cell[BoxData[
@@ -94,28 +94,28 @@ Cell[BoxData[
          RowBox[{"MatchQ", "[", 
           RowBox[{
            RowBox[{"pattern", "/.", 
-            RowBox[{"HoldPattern", "\[Rule]", "Hold"}]}], ",", 
-           RowBox[{"Hold", "[", "p", "]"}]}], "]"}]}], "\[RuleDelayed]", 
-        "_"}], ")"}]}], "\[RuleDelayed]", "rule"}]}], "]"}]}]], "Input",
+            RowBox[{"HoldPattern", "->", "Hold"}]}], ",",
+           RowBox[{"Hold", "[", "p", "]"}]}], "]"}]}], ":>",
+        "_"}], ")"}]}], ":>", "rule"}]}], "]"}]}]], "Input",
  InitializationCell->True],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{"ConvertRuleToAssignmentString", "[", 
-   RowBox[{"a_HoldPattern", "\[RuleDelayed]", "b_"}], "]"}], ":=", 
+   RowBox[{"a_HoldPattern", ":>", "b_"}], "]"}], ":=",
   RowBox[{
    RowBox[{"StringTake", "[", 
     RowBox[{
      RowBox[{"ToString", "[", 
       RowBox[{"a", ",", "InputForm", ",", 
-       RowBox[{"CharacterEncoding", "\[Rule]", "\"\<PrintableASCII\>\""}]}], 
+       RowBox[{"CharacterEncoding", "->", "\"\<PrintableASCII\>\""}]}],
       "]"}], ",", 
      RowBox[{"{", 
       RowBox[{"13", ",", 
        RowBox[{"-", "2"}]}], "}"}]}], "]"}], "<>", "\"\<:=\>\"", "<>", 
    RowBox[{"ToString", "[", 
     RowBox[{"b", ",", "InputForm", ",", 
-     RowBox[{"CharacterEncoding", "\[Rule]", "\"\<PrintableASCII\>\""}]}], 
+     RowBox[{"CharacterEncoding", "->", "\"\<PrintableASCII\>\""}]}],
     "]"}], "<>", "\"\<\\n\>\""}]}]], "Input",
  InitializationCell->True],
 
@@ -134,7 +134,7 @@ Cell[BoxData[
  RowBox[{
   RowBox[{"WriteRule", "[", 
    RowBox[{"filename_", ",", 
-    RowBox[{"a_HoldPattern", "\[RuleDelayed]", "b_"}]}], "]"}], ":=", 
+    RowBox[{"a_HoldPattern", ":>", "b_"}]}], "]"}], ":=",
   "\[IndentingNewLine]", 
   RowBox[{"(", 
    RowBox[{
@@ -146,7 +146,7 @@ Cell[BoxData[
          RowBox[{"ToString", "[", 
           RowBox[{"a", ",", "InputForm", ",", 
            RowBox[{
-           "CharacterEncoding", "\[Rule]", "\"\<PrintableASCII\>\""}]}], 
+           "CharacterEncoding", "->", "\"\<PrintableASCII\>\""}]}],
           "]"}], ",", 
          RowBox[{"{", 
           RowBox[{"13", ",", 
@@ -154,7 +154,7 @@ Cell[BoxData[
      "]"}], ";", "\[IndentingNewLine]", 
     RowBox[{"CautiousWriteString", "[", 
      RowBox[{"filename", ",", "b", ",", "InputForm", ",", 
-      RowBox[{"CharacterEncoding", "\[Rule]", "\"\<PrintableASCII\>\""}]}], 
+      RowBox[{"CharacterEncoding", "->", "\"\<PrintableASCII\>\""}]}],
      "]"}], ";", "\[IndentingNewLine]", 
     RowBox[{"WriteString", "[", 
      RowBox[{"filename", ",", "\"\<\\n\>\""}], "]"}], ";"}], ")"}]}]], "Input",\
@@ -294,15 +294,15 @@ Cell[BoxData[{
    RowBox[{"Options", "[", "PackageData", "]"}], "=", 
    RowBox[{"{", 
     RowBox[{
-     RowBox[{"\"\<Needs\>\"", "\[Rule]", 
+     RowBox[{"\"\<Needs\>\"", "->",
       RowBox[{"{", "}"}]}], ",", 
-     RowBox[{"\"\<ExtraPackageCode\>\"", "\[Rule]", "\"\<\>\""}], ",", 
-     RowBox[{"\"\<ExtraPrivateCode\>\"", "\[Rule]", "\"\<\>\""}], ",", 
-     RowBox[{"\"\<LoadPreexistingPackage\>\"", "\[Rule]", "True"}], ",", 
-     RowBox[{"\"\<Message\>\"", "\[Rule]", "\"\<QuantumGroups::loading\>\""}],
+     RowBox[{"\"\<ExtraPackageCode\>\"", "->", "\"\<\>\""}], ",",
+     RowBox[{"\"\<ExtraPrivateCode\>\"", "->", "\"\<\>\""}], ",",
+     RowBox[{"\"\<LoadPreexistingPackage\>\"", "->", "True"}], ",",
+     RowBox[{"\"\<Message\>\"", "->", "\"\<QuantumGroups::loading\>\""}],
       ",", 
-     RowBox[{"\"\<UseGzip\>\"", "\[Rule]", "False"}], ",", 
-     RowBox[{"\"\<ByteCountLimit\>\"", "\[Rule]", "\[Infinity]"}]}], "}"}]}], 
+     RowBox[{"\"\<UseGzip\>\"", "->", "False"}], ",",
+     RowBox[{"\"\<ByteCountLimit\>\"", "->", "\[Infinity]"}]}], "}"}]}],
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"PackageData", "[", 
@@ -426,7 +426,7 @@ Cell[BoxData[{
            RowBox[{"ToFileName", "[", 
             RowBox[{"Drop", "[", 
              RowBox[{"fullPackagePath", ",", 
-              RowBox[{"-", "2"}]}], "]"}], "]"}]}], "]"}], "]"}], "\[Equal]", 
+              RowBox[{"-", "2"}]}], "]"}], "]"}]}], "]"}], "]"}], "==",
         "0"}], ",", 
        RowBox[{"CreateDirectory", "[", "directory", "]"}]}], "]"}], ";", 
      "\[IndentingNewLine]", 
@@ -453,7 +453,7 @@ Cell[BoxData[{
          "\"\<.m\>\""}]}], "]"}]}], ";", "\[IndentingNewLine]", 
      RowBox[{"If", "[", 
       RowBox[{
-       RowBox[{"loadPreexistingPackage", "\[And]", 
+       RowBox[{"loadPreexistingPackage", "&&",
         RowBox[{"!", 
          RowBox[{"MemberQ", "[", 
           RowBox[{"$ContextPath", ",", "package"}], "]"}]}]}], ",", 
@@ -461,16 +461,16 @@ Cell[BoxData[{
        RowBox[{
         RowBox[{"If", "[", 
          RowBox[{
-          RowBox[{"useGzip", "\[And]", 
+          RowBox[{"useGzip", "&&",
            RowBox[{
             RowBox[{"Length", "[", 
-             RowBox[{"FileNames", "[", "filename", "]"}], "]"}], "\[Equal]", 
-            "0"}], "\[And]", 
+             RowBox[{"FileNames", "[", "filename", "]"}], "]"}], "==",
+            "0"}], "&&",
            RowBox[{
             RowBox[{"Length", "[", 
              RowBox[{"FileNames", "[", 
               RowBox[{"filename", "<>", "\"\<.gz\>\""}], "]"}], "]"}], 
-            "\[NotEqual]", "0"}]}], ",", "\[IndentingNewLine]", 
+            "!=", "0"}]}], ",", "\[IndentingNewLine]",
           RowBox[{
            RowBox[{"SetDirectory", "[", "directory", "]"}], ";", 
            "\[IndentingNewLine]", 
@@ -484,7 +484,7 @@ Cell[BoxData[{
          RowBox[{
           RowBox[{
            RowBox[{"Length", "[", 
-            RowBox[{"FileNames", "[", "filename", "]"}], "]"}], "\[NotEqual]",
+            RowBox[{"FileNames", "[", "filename", "]"}], "]"}], "!=",
             "0"}], ",", 
           RowBox[{"Get", "[", "package", "]"}]}], "]"}]}]}], 
       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
@@ -514,18 +514,18 @@ Cell[BoxData[{
       RowBox[{
        RowBox[{
         RowBox[{"Length", "[", 
-         RowBox[{"FileNames", "[", "filename", "]"}], "]"}], "\[NotEqual]", 
+         RowBox[{"FileNames", "[", "filename", "]"}], "]"}], "!=",
         "0"}], ",", 
        RowBox[{"DeleteFile", "[", "filename", "]"}]}], "]"}], ";", 
      "\[IndentingNewLine]", 
      RowBox[{"If", "[", 
       RowBox[{
-       RowBox[{"useGzip", "\[And]", 
+       RowBox[{"useGzip", "&&",
         RowBox[{
          RowBox[{"Length", "[", 
           RowBox[{"FileNames", "[", 
            RowBox[{"filename", "<>", "\"\<.gz\>\""}], "]"}], "]"}], 
-         "\[NotEqual]", "0"}]}], ",", 
+         "!=", "0"}]}], ",",
        RowBox[{"DeleteFile", "[", 
         RowBox[{"filename", "<>", "\"\<.gz\>\""}], "]"}]}], "]"}], ";", 
      "\[IndentingNewLine]", 
@@ -547,9 +547,9 @@ Cell[BoxData[{
            RowBox[{"(", 
             RowBox[{
              RowBox[{"(", 
-              RowBox[{"p_", "\[RuleDelayed]", "v_"}], ")"}], "/;", 
+              RowBox[{"p_", ":>", "v_"}], ")"}], "/;",
              RowBox[{
-              RowBox[{"ByteCount", "[", "v", "]"}], "\[LessEqual]", 
+              RowBox[{"ByteCount", "[", "v", "]"}], "<=",
               "byteCountLimit"}]}], ")"}]}], "]"}]}], ")"}], "&"}], "/@", 
       "patterns"}], ";", "\[IndentingNewLine]", 
      RowBox[{"WriteString", "[", 
@@ -609,15 +609,15 @@ Cell[BoxData[
        RowBox[{"ToString", "[", "\[CapitalGamma]", "]"}], "<>", 
        RowBox[{"ToString", "[", "n", "]"}]}], ",", "\"\<qDimensions\>\""}], 
      "}"}], ",", "\[IndentingNewLine]", 
-    RowBox[{"\"\<Needs\>\"", "\[Rule]", 
+    RowBox[{"\"\<Needs\>\"", "->",
      RowBox[{"{", 
       RowBox[{
       "\"\<QuantumGroups`\>\"", ",", 
        "\"\<QuantumGroups`Representations`\>\""}], "}"}]}], ",", 
     "\[IndentingNewLine]", 
-    RowBox[{"\"\<ExtraPrivateCode\>\"", "\[Rule]", "\"\<q=Global`q;\>\""}], 
+    RowBox[{"\"\<ExtraPrivateCode\>\"", "->", "\"\<q=Global`q;\>\""}],
     ",", 
-    RowBox[{"\"\<UseGzip\>\"", "\[Rule]", "False"}]}], "\[IndentingNewLine]", 
+    RowBox[{"\"\<UseGzip\>\"", "->", "False"}]}], "\[IndentingNewLine]",
    "]"}]}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.42010793381851*^9, 3.420107956010421*^9}, {
@@ -645,7 +645,7 @@ Cell[BoxData[
        RowBox[{"ToString", "[", "\[CapitalGamma]", "]"}], "<>", 
        RowBox[{"ToString", "[", "n", "]"}]}], ",", 
       "\"\<MatrixPresentations\>\""}], "}"}], ",", "\[IndentingNewLine]", 
-    RowBox[{"\"\<Needs\>\"", "\[Rule]", 
+    RowBox[{"\"\<Needs\>\"", "->",
      RowBox[{"{", 
       RowBox[{
       "\"\<QuantumGroups`\>\"", ",", 
@@ -653,9 +653,9 @@ Cell[BoxData[
        "\"\<QuantumGroups`Utilities`MatrixWrapper`\>\"", ",", 
        "\"\<QuantumGroups`Algebra`\>\""}], "}"}]}], ",", 
     "\[IndentingNewLine]", 
-    RowBox[{"\"\<ExtraPrivateCode\>\"", "\[Rule]", "\"\<q=Global`q;\>\""}], 
+    RowBox[{"\"\<ExtraPrivateCode\>\"", "->", "\"\<q=Global`q;\>\""}],
     ",", 
-    RowBox[{"\"\<UseGzip\>\"", "\[Rule]", "False"}]}], "\[IndentingNewLine]", 
+    RowBox[{"\"\<UseGzip\>\"", "->", "False"}]}], "\[IndentingNewLine]",
    "]"}]}]], "Input",
  InitializationCell->True],
 
@@ -688,7 +688,7 @@ Cell[BoxData[
          RowBox[{"ToString", "[", "\[CapitalGamma]", "]"}], "<>", 
          RowBox[{"ToString", "[", "n", "]"}]}], ",", 
         "\"\<DecompositionMaps\>\""}], "}"}], ",", "\[IndentingNewLine]", 
-      RowBox[{"\"\<Needs\>\"", "\[Rule]", 
+      RowBox[{"\"\<Needs\>\"", "->",
        RowBox[{"{", 
         RowBox[{
         "\"\<QuantumGroups`\>\"", ",", 
@@ -697,10 +697,10 @@ Cell[BoxData[
          "\"\<QuantumGroups`RepresentationTensors`\>\"", ",", 
          "\"\<QuantumGroups`MatrixPresentations`\>\""}], "}"}]}], ",", 
       "\[IndentingNewLine]", 
-      RowBox[{"\"\<ExtraPrivateCode\>\"", "\[Rule]", "\"\<q=Global`q;\>\""}], 
+      RowBox[{"\"\<ExtraPrivateCode\>\"", "->", "\"\<q=Global`q;\>\""}],
       ",", 
-      RowBox[{"\"\<UseGzip\>\"", "\[Rule]", "False"}], ",", 
-      RowBox[{"\"\<ByteCountLimit\>\"", "\[Rule]", "6000000"}]}], 
+      RowBox[{"\"\<UseGzip\>\"", "->", "False"}], ",",
+      RowBox[{"\"\<ByteCountLimit\>\"", "->", "6000000"}]}],
      "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
     RowBox[{"PackageLargeDecompositionMaps", "[", 
      RowBox[{
@@ -788,18 +788,18 @@ Cell[BoxData[
          RowBox[{"(", 
           RowBox[{
            RowBox[{"(", 
-            RowBox[{"p_", "\[RuleDelayed]", "v_"}], ")"}], "/;", 
+            RowBox[{"p_", ":>", "v_"}], ")"}], "/;",
            RowBox[{"(", 
             RowBox[{
              RowBox[{"ByteCount", "[", "v", "]"}], ">", "limit"}], ")"}]}], 
-          ")"}], "\[RuleDelayed]", "p"}]}], "]"}]}], ";", 
+          ")"}], ":>", "p"}]}], "]"}]}], ";",
      "\[IndentingNewLine]", 
      RowBox[{"largeTensorPowers", "=", 
       RowBox[{
        RowBox[{"Cases", "[", 
         RowBox[{
          RowBox[{"largeValues", "/.", 
-          RowBox[{"HoldPattern", "\[Rule]", "Hold"}]}], ",", 
+          RowBox[{"HoldPattern", "->", "Hold"}]}], ",",
          RowBox[{
           RowBox[{"Hold", "[", 
            RowBox[{"DecompositionMap", "[", 
@@ -808,7 +808,7 @@ Cell[BoxData[
             "]"}], "]"}], "/;", 
           RowBox[{"MatchQ", "[", 
            RowBox[{"V", ",", "tensorPowerPattern"}], "]"}]}]}], "]"}], "/.", 
-       RowBox[{"Hold", "\[Rule]", "HoldPattern"}]}]}], ";", 
+       RowBox[{"Hold", "->", "HoldPattern"}]}]}], ";",
      "\[IndentingNewLine]", 
      RowBox[{"(*", " ", 
       RowBox[{"oops", ",", " ", 
@@ -821,11 +821,11 @@ Cell[BoxData[
       RowBox[{
        RowBox[{
         RowBox[{"largeTensorPowers", "/.", 
-         RowBox[{"HoldPattern", "\[Rule]", "Hold"}]}], "/.", 
+         RowBox[{"HoldPattern", "->", "Hold"}]}], "/.",
         RowBox[{
          RowBox[{"Hold", "[", 
           RowBox[{"DecompositionMap", "[", 
-           RowBox[{"_", ",", "V_", ",", "_"}], "]"}], "]"}], "\[RuleDelayed]",
+           RowBox[{"_", ",", "V_", ",", "_"}], "]"}], "]"}], ":>",
           "V"}]}], "/.", 
        RowBox[{
         RowBox[{"U", ":", 
@@ -834,7 +834,7 @@ Cell[BoxData[
            RowBox[{"V", ":", 
             RowBox[{
              RowBox[{"Irrep", "[", "_", "]"}], "[", "\[Lambda]_", "]"}]}]}], 
-          ")"}]}], "\[RuleDelayed]", 
+          ")"}]}], ":>",
         RowBox[{"{", 
          RowBox[{"\[Lambda]", ",", 
           RowBox[{"Count", "[", 
@@ -865,7 +865,7 @@ Cell[BoxData[
             RowBox[{"ToString", "[", "\[CapitalGamma]", "]"}], "<>", 
             RowBox[{"ToString", "[", "n", "]"}]}], ",", 
            "\"\<DecompositionMaps\>\"", ",", "\"\<Large\>\""}], "}"}], ",", 
-         RowBox[{"\"\<Needs\>\"", "\[Rule]", 
+         RowBox[{"\"\<Needs\>\"", "->",
           RowBox[{"{", 
            RowBox[{
            "\"\<QuantumGroups`\>\"", ",", 
@@ -875,9 +875,9 @@ Cell[BoxData[
             "\"\<QuantumGroups`MatrixPresentations`\>\""}], "}"}]}], ",", 
          "\[IndentingNewLine]", 
          RowBox[{
-         "\"\<ExtraPrivateCode\>\"", "\[Rule]", "\"\<q=Global`q;\>\""}], ",", 
+         "\"\<ExtraPrivateCode\>\"", "->", "\"\<q=Global`q;\>\""}], ",",
          
-         RowBox[{"\"\<UseGzip\>\"", "\[Rule]", "False"}]}], "]"}]}], "]"}], 
+         RowBox[{"\"\<UseGzip\>\"", "->", "False"}]}], "]"}]}], "]"}],
      ";", "\[IndentingNewLine]", 
      RowBox[{"If", "[", 
       RowBox[{
@@ -916,7 +916,7 @@ Cell[BoxData[
                 RowBox[{
                 "d", "\[LeftDoubleBracket]", "2", "\[RightDoubleBracket]"}], 
                 "]"}]}]}], "}"}], ",", 
-            RowBox[{"\"\<Needs\>\"", "\[Rule]", 
+            RowBox[{"\"\<Needs\>\"", "->",
              RowBox[{"{", 
               RowBox[{
               "\"\<QuantumGroups`\>\"", ",", 
@@ -926,9 +926,9 @@ Cell[BoxData[
                "\"\<QuantumGroups`MatrixPresentations`\>\""}], "}"}]}], ",", 
             "\[IndentingNewLine]", 
             RowBox[{
-            "\"\<ExtraPrivateCode\>\"", "\[Rule]", "\"\<q=Global`q;\>\""}], 
+            "\"\<ExtraPrivateCode\>\"", "->", "\"\<q=Global`q;\>\""}],
             ",", 
-            RowBox[{"\"\<UseGzip\>\"", "\[Rule]", "False"}]}], "]"}]}], "]"}],
+            RowBox[{"\"\<UseGzip\>\"", "->", "False"}]}], "]"}]}], "]"}],
          "/@", "largeTensorPowerData"}]}], "]"}], ";"}]}], 
    "\[IndentingNewLine]", "]"}]}]], "Input",
  InitializationCell->True,
@@ -968,13 +968,13 @@ Cell[BoxData[
        RowBox[{"ToString", "[", "\[CapitalGamma]", "]"}], "<>", 
        RowBox[{"ToString", "[", "n", "]"}]}], ",", "\"\<QuantumRoots\>\""}], 
      "}"}], ",", "\[IndentingNewLine]", 
-    RowBox[{"\"\<Needs\>\"", "\[Rule]", 
+    RowBox[{"\"\<Needs\>\"", "->",
      RowBox[{"{", 
       RowBox[{
       "\"\<QuantumGroups`\>\"", ",", "\"\<QuantumGroups`QuantumRoots`\>\"", 
        ",", "\"\<QuantumGroups`Algebra`\>\""}], "}"}]}], ",", 
     "\[IndentingNewLine]", 
-    RowBox[{"\"\<ExtraPrivateCode\>\"", "\[Rule]", "\"\<q=Global`q;\>\""}]}], 
+    RowBox[{"\"\<ExtraPrivateCode\>\"", "->", "\"\<q=Global`q;\>\""}]}],
    "\[IndentingNewLine]", "]"}]}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.4112376010476723`*^9, 3.4112376068460093`*^9}}],
@@ -995,16 +995,16 @@ Cell[BoxData[
        RowBox[{"ToString", "[", "\[CapitalGamma]", "]"}], "<>", 
        RowBox[{"ToString", "[", "n", "]"}]}], ",", "\"\<RMatrix\>\""}], "}"}],
      ",", "\[IndentingNewLine]", 
-    RowBox[{"\"\<Needs\>\"", "\[Rule]", 
+    RowBox[{"\"\<Needs\>\"", "->",
      RowBox[{"{", 
       RowBox[{
       "\"\<QuantumGroups`\>\"", ",", 
        "\"\<QuantumGroups`Utilities`MatrixWrapper`\>\"", ",", 
        "\"\<QuantumGroups`Representations`\>\""}], "}"}]}], ",", 
     "\[IndentingNewLine]", 
-    RowBox[{"\"\<ExtraPrivateCode\>\"", "\[Rule]", "\"\<q=Global`q;\>\""}], 
+    RowBox[{"\"\<ExtraPrivateCode\>\"", "->", "\"\<q=Global`q;\>\""}],
     ",", 
-    RowBox[{"\"\<UseGzip\>\"", "\[Rule]", "False"}]}], "\[IndentingNewLine]", 
+    RowBox[{"\"\<UseGzip\>\"", "->", "False"}]}], "\[IndentingNewLine]",
    "]"}]}]], "Input",
  InitializationCell->True],
 
@@ -1025,7 +1025,7 @@ Cell[BoxData[
        RowBox[{"ToString", "[", "n", "]"}]}], ",", 
       "\"\<PartialRMatrixPresentation\>\""}], "}"}], ",", 
     "\[IndentingNewLine]", 
-    RowBox[{"\"\<Needs\>\"", "\[Rule]", 
+    RowBox[{"\"\<Needs\>\"", "->",
      RowBox[{"{", 
       RowBox[{
       "\"\<QuantumGroups`\>\"", ",", 
@@ -1034,7 +1034,7 @@ Cell[BoxData[
        "\"\<QuantumGroups`Utilities`MatrixWrapper`\>\"", ",", 
        "\"\<QuantumGroups`Representations`\>\""}], "}"}]}], ",", 
     "\[IndentingNewLine]", 
-    RowBox[{"\"\<ExtraPrivateCode\>\"", "\[Rule]", "\"\<q=Global`q;\>\""}]}], 
+    RowBox[{"\"\<ExtraPrivateCode\>\"", "->", "\"\<q=Global`q;\>\""}]}],
    "\[IndentingNewLine]", "]"}]}]], "Input",
  InitializationCell->True],
 
@@ -1058,7 +1058,7 @@ Cell[BoxData[
        RowBox[{"ToString", "[", "n", "]"}]}], ",", 
       "\"\<DirectSumDecompositions\>\""}], "}"}], ",", "\[IndentingNewLine]", 
     
-    RowBox[{"\"\<Needs\>\"", "\[Rule]", 
+    RowBox[{"\"\<Needs\>\"", "->",
      RowBox[{"{", 
       RowBox[{
       "\"\<QuantumGroups`\>\"", ",", 
@@ -1066,7 +1066,7 @@ Cell[BoxData[
        "\"\<QuantumGroups`Utilities`MatrixWrapper`\>\"", ",", 
        "\"\<QuantumGroups`Representations`\>\""}], "}"}]}], ",", 
     "\[IndentingNewLine]", 
-    RowBox[{"\"\<ExtraPrivateCode\>\"", "\[Rule]", "\"\<q=Global`q;\>\""}]}], 
+    RowBox[{"\"\<ExtraPrivateCode\>\"", "->", "\"\<q=Global`q;\>\""}]}],
    "\[IndentingNewLine]", "]"}]}]], "Input",
  InitializationCell->True],
 
@@ -1088,7 +1088,7 @@ Cell[BoxData[
        RowBox[{"ToString", "[", "\[CapitalGamma]", "]"}], "<>", 
        RowBox[{"ToString", "[", "n", "]"}]}], ",", 
       "\"\<SubIrrepWeightBases\>\""}], "}"}], ",", "\[IndentingNewLine]", 
-    RowBox[{"\"\<Needs\>\"", "\[Rule]", 
+    RowBox[{"\"\<Needs\>\"", "->",
      RowBox[{"{", 
       RowBox[{
       "\"\<QuantumGroups`\>\"", ",", 
@@ -1096,7 +1096,7 @@ Cell[BoxData[
        "\"\<QuantumGroups`Utilities`MatrixWrapper`\>\"", ",", 
        "\"\<QuantumGroups`Representations`\>\""}], "}"}]}], ",", 
     "\[IndentingNewLine]", 
-    RowBox[{"\"\<ExtraPrivateCode\>\"", "\[Rule]", "\"\<q=Global`q;\>\""}]}], 
+    RowBox[{"\"\<ExtraPrivateCode\>\"", "->", "\"\<q=Global`q;\>\""}]}],
    "\[IndentingNewLine]", "]"}]}]], "Input",
  InitializationCell->True],
 
@@ -1126,7 +1126,7 @@ Cell[BoxData[
        RowBox[{"ToString", "[", "\[CapitalGamma]", "]"}], "<>", 
        RowBox[{"ToString", "[", "n", "]"}]}], ",", "\"\<BraidingMaps\>\""}], 
      "}"}], ",", "\[IndentingNewLine]", 
-    RowBox[{"\"\<Needs\>\"", "\[Rule]", 
+    RowBox[{"\"\<Needs\>\"", "->",
      RowBox[{"{", 
       RowBox[{
       "\"\<QuantumGroups`\>\"", ",", 
@@ -1135,7 +1135,7 @@ Cell[BoxData[
        "\"\<QuantumGroups`Utilities`MatrixWrapper`\>\"", ",", 
        "\"\<QuantumGroups`Representations`\>\""}], "}"}]}], ",", 
     "\[IndentingNewLine]", 
-    RowBox[{"\"\<ExtraPrivateCode\>\"", "\[Rule]", "\"\<q=Global`q;\>\""}]}], 
+    RowBox[{"\"\<ExtraPrivateCode\>\"", "->", "\"\<q=Global`q;\>\""}]}],
    "\[IndentingNewLine]", "]"}]}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.4211616042603025`*^9, 3.42116161039913*^9}, {
@@ -1159,7 +1159,7 @@ Cell[BoxData[
        RowBox[{"ToString", "[", "\[CapitalGamma]", "]"}], "<>", 
        RowBox[{"ToString", "[", "n", "]"}]}], ",", 
       "\"\<BRPresentations\>\""}], "}"}], ",", "\[IndentingNewLine]", 
-    RowBox[{"\"\<Needs\>\"", "\[Rule]", 
+    RowBox[{"\"\<Needs\>\"", "->",
      RowBox[{"{", 
       RowBox[{
       "\"\<QuantumGroups`\>\"", ",", 
@@ -1168,7 +1168,7 @@ Cell[BoxData[
        "\"\<QuantumGroups`Utilities`MatrixWrapper`\>\"", ",", 
        "\"\<QuantumGroups`Representations`\>\""}], "}"}]}], ",", 
     "\[IndentingNewLine]", 
-    RowBox[{"\"\<ExtraPrivateCode\>\"", "\[Rule]", "\"\<q=Global`q;\>\""}]}], 
+    RowBox[{"\"\<ExtraPrivateCode\>\"", "->", "\"\<q=Global`q;\>\""}]}],
    "\[IndentingNewLine]", "]"}]}]], "Input",
  InitializationCell->True],
 
@@ -1188,7 +1188,7 @@ Cell[BoxData[
        RowBox[{"ToString", "[", "\[CapitalGamma]", "]"}], "<>", 
        RowBox[{"ToString", "[", "n", "]"}]}], ",", 
       "\"\<HighWeightVectors\>\""}], "}"}], ",", "\[IndentingNewLine]", 
-    RowBox[{"\"\<Needs\>\"", "\[Rule]", 
+    RowBox[{"\"\<Needs\>\"", "->",
      RowBox[{"{", 
       RowBox[{
       "\"\<QuantumGroups`\>\"", ",", 
@@ -1196,7 +1196,7 @@ Cell[BoxData[
        "\"\<QuantumGroups`Utilities`MatrixWrapper`\>\"", ",", 
        "\"\<QuantumGroups`Representations`\>\""}], "}"}]}], ",", 
     "\[IndentingNewLine]", 
-    RowBox[{"\"\<ExtraPrivateCode\>\"", "\[Rule]", "\"\<q=Global`q;\>\""}]}], 
+    RowBox[{"\"\<ExtraPrivateCode\>\"", "->", "\"\<q=Global`q;\>\""}]}],
    "\[IndentingNewLine]", "]"}]}]], "Input",
  InitializationCell->True],
 
@@ -1216,7 +1216,7 @@ Cell[BoxData[
        RowBox[{"ToString", "[", "\[CapitalGamma]", "]"}], "<>", 
        RowBox[{"ToString", "[", "n", "]"}]}], ",", 
       "\"\<BraidingMatrices\>\""}], "}"}], ",", "\[IndentingNewLine]", 
-    RowBox[{"\"\<Needs\>\"", "\[Rule]", 
+    RowBox[{"\"\<Needs\>\"", "->",
      RowBox[{"{", 
       RowBox[{
       "\"\<QuantumGroups`\>\"", ",", "\"\<QuantumGroups`Braiding`\>\"", ",", 
@@ -1224,7 +1224,7 @@ Cell[BoxData[
        "\"\<QuantumGroups`Utilities`MatrixWrapper`\>\"", ",", 
        "\"\<QuantumGroups`Representations`\>\""}], "}"}]}], ",", 
     "\[IndentingNewLine]", 
-    RowBox[{"\"\<ExtraPrivateCode\>\"", "\[Rule]", "\"\<q=Global`q;\>\""}]}], 
+    RowBox[{"\"\<ExtraPrivateCode\>\"", "->", "\"\<q=Global`q;\>\""}]}],
    "\[IndentingNewLine]", "]"}]}]], "Input",
  InitializationCell->True],
 
@@ -1257,7 +1257,7 @@ Cell[BoxData[{
   RowBox[{"Get", "[", 
    RowBox[{"package_String", "/;", 
     RowBox[{"(", 
-     RowBox[{"useGetGzipHack", "\[And]", 
+     RowBox[{"useGetGzipHack", "&&",
       RowBox[{"StringMatchQ", "[", 
        RowBox[{"package", ",", 
         RowBox[{"\"\<QuantumGroups`Data`\>\"", "~~", "__"}]}], "]"}]}], 
@@ -1291,7 +1291,7 @@ Cell[BoxData[{
          RowBox[{"FileNames", "[", 
           RowBox[{
            RowBox[{"filename", "<>", "\"\<.gz\>\""}], ",", 
-           RowBox[{"{", "directory", "}"}]}], "]"}], "]"}], "\[NotEqual]", 
+           RowBox[{"{", "directory", "}"}]}], "]"}], "]"}], "!=",
         "0"}], ",", "\[IndentingNewLine]", 
        RowBox[{
         RowBox[{"gzipExists", "=", "True"}], ";", "\[IndentingNewLine]", 

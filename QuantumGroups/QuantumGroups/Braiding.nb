@@ -513,7 +513,7 @@ Cell[BoxData[
          RowBox[{"Together", "[", 
           RowBox[{"map", ".", 
            RowBox[{"Transpose", "[", "basis", "]"}]}], "]"}], ",", 
-         RowBox[{"Method", "\[Rule]", "OneStepRowReduction"}]}], "]"}], "]"}],
+         RowBox[{"Method", "->", "OneStepRowReduction"}]}], "]"}], "]"}],
        "]"}]}]}], "\[IndentingNewLine]", "]"}]}]], "Input",
  InitializationCell->True,
  CellChangeTimes->{{3.4189424085823345`*^9, 3.418942410685358*^9}}],
@@ -728,8 +728,8 @@ Cell[BoxData[
   RowBox[{
    RowBox[{"(", 
     RowBox[{
-     RowBox[{"Length", "[", "m", "]"}], "\[Equal]", 
-     RowBox[{"Length", "[", "i", "]"}]}], ")"}], "\[And]", 
+     RowBox[{"Length", "[", "m", "]"}], "==",
+     RowBox[{"Length", "[", "i", "]"}]}], ")"}], "&&",
    RowBox[{"(", 
     RowBox[{"And", "@@", 
      RowBox[{"Table", "[", 
@@ -752,7 +752,7 @@ Cell[BoxData[
        RowBox[{"{", 
         RowBox[{"k", ",", "1", ",", 
          RowBox[{"Length", "[", "m", "]"}]}], "}"}]}], "]"}]}], ")"}], 
-   "\[And]", 
+   "&&",
    RowBox[{"CheckBraidingData", "[", "m", "]"}]}]}]], "Input",
  InitializationCell->True],
 
@@ -805,12 +805,12 @@ Cell[BoxData[
        RowBox[{"ToString", "[", "\[CapitalGamma]", "]"}], "<>", 
        RowBox[{"ToString", "[", "n", "]"}]}], ",", "\"\<BraidingData\>\""}], 
      "}"}], ",", "\[IndentingNewLine]", 
-    RowBox[{"\"\<Needs\>\"", "\[Rule]", 
+    RowBox[{"\"\<Needs\>\"", "->",
      RowBox[{"{", 
       RowBox[{
       "\"\<QuantumGroups`\>\"", ",", "\"\<QuantumGroups`Braiding`\>\""}], 
       "}"}]}], ",", "\[IndentingNewLine]", 
-    RowBox[{"\"\<ExtraPrivateCode\>\"", "\[Rule]", "\"\<q=Global`q;\>\""}]}], 
+    RowBox[{"\"\<ExtraPrivateCode\>\"", "->", "\"\<q=Global`q;\>\""}]}],
    "\[IndentingNewLine]", "]"}]}]], "Input",
  InitializationCell->True],
 
@@ -914,7 +914,7 @@ Cell[BoxData[
                 "]"}], ",", "k"}], "]"}], ",", "InputForm"}], "]"}]}], 
          "]"}]}]}], "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
      "M"}], "]"}], "/.", 
-   RowBox[{"$Aborted", "\[RuleDelayed]", 
+   RowBox[{"$Aborted", ":>",
     RowBox[{"(", 
      RowBox[{
       RowBox[{"Print", "[", 
@@ -950,7 +950,7 @@ Cell[BoxData[
       RowBox[{
        RowBox[{
         RowBox[{"text", "==", "\"\<\>\""}], "\[Or]", 
-        RowBox[{"text", "\[Equal]", "$Failed"}]}], ",", 
+        RowBox[{"text", "==", "$Failed"}]}], ",",
        RowBox[{"Return", "[", "$Failed", "]"}]}], "]"}], ";", 
      "\[IndentingNewLine]", 
      RowBox[{
@@ -1021,7 +1021,7 @@ Cell[BoxData[
                  RowBox[{"k", ":", 
                   RowBox[{"(", 
                    RowBox[{"DigitCharacter", ".."}], ")"}]}]}]}]}]}]}]}]}], 
-          "\[RuleDelayed]", "\[IndentingNewLine]", 
+          ":>", "\[IndentingNewLine]",
           RowBox[{"(", 
            RowBox[{
             RowBox[{"irrep", "=", 

@@ -56,7 +56,7 @@ Begin["`Private`"];
 CartanMatrix[Subscript[A, n_]]:=CartanMatrix[Subscript[A, n]]=Array[Switch[#1-#2,1,-1,0,2,-1,-1,_,0]&,{n,n}]
 
 
-ElementaryMatrix[n_,i0_,j0_]:=Table[If[i==i0\[And]j==j0,1,0],{i,1,n},{j,1,n}]
+ElementaryMatrix[n_,i0_,j0_]:=Table[If[i==i0&&j==j0,1,0],{i,1,n},{j,1,n}]
 
 
 CartanMatrix[Subscript[B, n_]]:=CartanMatrix[Subscript[B, n]]=CartanMatrix[Subscript[A, n]]-ElementaryMatrix[n,n,n-1]

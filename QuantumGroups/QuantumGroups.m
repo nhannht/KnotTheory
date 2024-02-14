@@ -200,7 +200,7 @@ Protect[UnitVector];
 ]
 
 
-UnitVectorQ[v_?VectorQ]:=Complement[v,{0,1}]=={}\[And]Count[v,1]==1
+UnitVectorQ[v_?VectorQ]:=Complement[v,{0,1}]=={}&&Count[v,1]==1
 
 
 ZeroVectorQ[v_?VectorQ]:=Union[v]==={0}\[Or]v=={}

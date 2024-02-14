@@ -8370,12 +8370,12 @@ Cell[BoxData[
        RowBox[{
         RowBox[{
         "___", "~~", "\"\<<ul>\>\"", "~~", "p___", "~~", 
-         "\"\<<!-- end content -->\>\"", "~~", "__"}], "\[RuleDelayed]", 
+         "\"\<<!-- end content -->\>\"", "~~", "__"}], ":>",
         "p"}]}], "]"}], ",", " ", 
      RowBox[{
       RowBox[{"\"\<title=\\\"\>\"", "~~", 
        RowBox[{"ShortestMatch", "[", "title__", "]"}], "~~", 
-       "\"\<\\\">\>\""}], "\[RuleDelayed]", "title"}]}], "]"}], 
+       "\"\<\\\">\>\""}], ":>", "title"}]}], "]"}],
    "]"}]}]], "Input",
  CellChangeTimes->{{3.543285140959669*^9, 3.54328520660382*^9}}],
 
@@ -8534,7 +8534,7 @@ Cell[BoxData[
              "\"\</w/index.php?title=Special:Allpages&amp;from=\>\"", "~~", 
               RowBox[{"ShortestMatch", "[", "__", "]"}]}], ")"}]}], "~~", 
            "\"\<\\\" title=\\\"Special:Allpages\\\">Next page\>\""}]}], 
-         "\[RuleDelayed]", 
+         ":>",
          RowBox[{"\"\<http://\>\"", "<>", "hostName", "<>", 
           RowBox[{"StringReplace", "[", 
            RowBox[{"nextURL", ",", 
@@ -8543,7 +8543,7 @@ Cell[BoxData[
      RowBox[{"If", "[", 
       RowBox[{
        RowBox[{
-        RowBox[{"Length", "[", "candidates", "]"}], "\[Equal]", "0"}], ",", 
+        RowBox[{"Length", "[", "candidates", "]"}], "==", "0"}], ",",
        "$Failed", ",", 
        RowBox[{
        "candidates", "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}]}],
@@ -8603,7 +8603,7 @@ Cell[BoxData[
              RowBox[{
               RowBox[{"pagename", ":", 
                RowBox[{"ShortestMatch", "[", "__", "]"}]}], "~~", 
-              "\"\<\\\"\>\""}]}], "\[RuleDelayed]", "pagename"}]}], "]"}]}], 
+              "\"\<\\\"\>\""}]}], ":>", "pagename"}]}], "]"}]}],
         ";", "\[IndentingNewLine]", 
         RowBox[{"Print", "[", 
          RowBox[{"\"\<Found \>\"", "<>", 
@@ -9026,7 +9026,7 @@ Cell[BoxData[
          RowBox[{"p__", "/;", 
           RowBox[{
            RowBox[{
-            RowBox[{"StringLength", "[", "p", "]"}], ">", "40"}], "\[And]", 
+            RowBox[{"StringLength", "[", "p", "]"}], ">", "40"}], "&&",
            RowBox[{"StringFreeQ", "[", 
             RowBox[{
              RowBox[{"ToLowerCase", "[", "p", "]"}], ",", 
@@ -9112,7 +9112,7 @@ Cell[BoxData[
       RowBox[{"\"\<./wikidelete.sh \>\"", "<>", 
        RowBox[{"StringReplace", "[", 
         RowBox[{"#", ",", 
-         RowBox[{"\"\< \>\"", "\[RuleDelayed]", "\"\<_\>\""}]}], "]"}]}], 
+         RowBox[{"\"\< \>\"", ":>", "\"\<_\>\""}]}], "]"}]}],
       ")"}], "&"}], "/@", "spam"}], ")"}]}]], "Input",
  CellChangeTimes->{{3.543288062943112*^9, 3.543288087045191*^9}, {
   3.5432881473844137`*^9, 3.543288175814234*^9}}],
@@ -9178,7 +9178,7 @@ Cell[BoxData[
          RowBox[{"\"\<http://tqft.net/wiki/\>\"", "<>", 
           RowBox[{"StringReplace", "[", 
            RowBox[{"s", ",", 
-            RowBox[{"\"\< \>\"", "\[Rule]", "\"\<_\>\""}]}], "]"}]}], ",", 
+            RowBox[{"\"\< \>\"", "->", "\"\<_\>\""}]}], "]"}]}], ",",
          "\"\<Text\>\""}], "]"}], ",", "\"\<Has Been Moved\>\""}], 
       "]"}]}]}]}], "]"}]], "Input",
  CellChangeTimes->{{3.543290077599276*^9, 3.543290164980987*^9}}],
@@ -9381,7 +9381,7 @@ Cell[BoxData[
     RowBox[{
      RowBox[{"{", 
       RowBox[{"title_String", ",", 
-       RowBox[{"{", "__", "}"}]}], "}"}], "\[RuleDelayed]", "title"}]}], 
+       RowBox[{"{", "__", "}"}]}], "}"}], ":>", "title"}]}],
    "]"}]}]], "Input"],
 
 Cell[CellGroupData[{
@@ -9425,7 +9425,7 @@ Cell[BoxData[
      RowBox[{
       RowBox[{"{", 
        RowBox[{"title_String", ",", 
-        RowBox[{"{", "__", "}"}]}], "}"}], "\[RuleDelayed]", "title"}]}], 
+        RowBox[{"{", "__", "}"}]}], "}"}], ":>", "title"}]}],
     "]"}], "]"}]}]], "Input"],
 
 Cell[CellGroupData[{

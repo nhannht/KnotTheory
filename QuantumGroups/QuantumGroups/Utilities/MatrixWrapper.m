@@ -31,7 +31,7 @@ Begin["`Private`"];
 If[$VersionNumber<6,
 UnitVector[n_Integer,k_Integer]/;1<=k<=n:=Table[If[i==k,1,0],{i,1,n}]
 ]
-UnitVectorQ[v_?VectorQ]:=Complement[v,{0,1}]=={}\[And]Count[v,1]==1
+UnitVectorQ[v_?VectorQ]:=Complement[v,{0,1}]=={}&&Count[v,1]==1
 
 
 OnesMatrix[n_,m_]:=Matrix[n,m,Table[1,{n},{m}]]
@@ -127,7 +127,7 @@ Matrix/:AppendColumns[m1_Matrix]:=m1
 (*Matrix/:AppendColumns[m1_Matrix,m2__Matrix]:=AppendColumns[m1,AppendColumns[m2]]*)
 
 
-Matrix/:Dot[m1_Matrix,m2__Matrix]/;(!MemberQ[Flatten[Dimensions/@{m1,m2}],0]\[And]Most[Last/@Dimensions/@{m1,m2}]==Rest[First/@Dimensions/@{m1,m2}]):=Matrix[Dimensions[{m1,m2}[[1]]][[1]],Dimensions[{m1,m2}[[-1]]][[2]],Dot@@(MatrixData/@{m1,m2})]
+Matrix/:Dot[m1_Matrix,m2__Matrix]/;(!MemberQ[Flatten[Dimensions/@{m1,m2}],0]&&Most[Last/@Dimensions/@{m1,m2}]==Rest[First/@Dimensions/@{m1,m2}]):=Matrix[Dimensions[{m1,m2}[[1]]][[1]],Dimensions[{m1,m2}[[-1]]][[2]],Dot@@(MatrixData/@{m1,m2})]
 
 
 Matrix/:Dot[m1_Matrix,m2__Matrix]/;(MemberQ[Flatten[Dimensions/@{m1,m2}],0]):=ZeroesMatrix[Dimensions[{m1,m2}[[1]]][[1]],Dimensions[{m1,m2}[[-1]]][[2]]]
@@ -142,7 +142,7 @@ Matrix/:\[Alpha]_ Matrix[j_,k_,data_]:=Matrix[j,k,\[Alpha] data]
 If[$VersionNumber>=6,BlockMatrix=ArrayFlatten];
 
 
-MatrixKroneckerProduct[Matrix[r1_,c1_,data1_],Matrix[r2_,c2_,data2_]]/;r1>0\[And]r2>0\[And]c1>0\[And]c2>0:=Matrix[r1 r2, c1 c2,BlockMatrix[Outer[Times,data1,data2]]]
+MatrixKroneckerProduct[Matrix[r1_,c1_,data1_],Matrix[r2_,c2_,data2_]]/;r1>0&&r2>0&&c1>0&&c2>0:=Matrix[r1 r2, c1 c2,BlockMatrix[Outer[Times,data1,data2]]]
 
 
 MatrixKroneckerProduct[Matrix[0,c1_,_],Matrix[_,c2_,_]]:=Matrix[0,c1 c2]
@@ -174,7 +174,7 @@ InterpolationInverseThreshold=21;
 PrepareInverse[x_]:=Null
 
 
-If[$VersionNumber>=6,SquareMatrixQ[m_]:=(MatrixQ[m]\[And]Dimensions[m][[1]]==Dimensions[m][[2]])]
+If[$VersionNumber>=6,SquareMatrixQ[m_]:=(MatrixQ[m]&&Dimensions[m][[1]]==Dimensions[m][[2]])]
 
 
 MatrixInverse[m_]/;(SquareMatrixQ[m]\[Or](Print["Warning: tried to take the inverse of a non-square matrix! ",m];False)):=If[Length[m]>=InterpolationInverseThreshold,RowOrderedInterpolationInverse[m],RowReductionInverse[m]]
@@ -232,7 +232,7 @@ n++
 If[size>20,DebugPrint["Inverting numerical matrices:"]];
 data=Transpose[Table[If[size>20,DebugPrint[i]];Inverse[newMatrix/.Global`q->abcissa[[i]]],{i,1,Length[abcissa]}],{3,1,2}];
 If[size>20,DebugPrint["Interpolating numerical matrices:"]];
-inverse=Table[If[j==1\[And]size>20,DebugPrint[i]];Simplify[InterpolatingPolynomial[Transpose[{abcissa,data[[i,j]]}],Global`q]],{i,1,size},{j,1,size}];
+inverse=Table[If[j==1&&size>20,DebugPrint[i]];Simplify[InterpolatingPolynomial[Transpose[{abcissa,data[[i,j]]}],Global`q]],{i,1,size},{j,1,size}];
 DebugPrint["done"];
 Together[1/det inverse]
 ]
