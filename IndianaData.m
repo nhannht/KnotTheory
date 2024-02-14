@@ -2,7 +2,7 @@
  (* Data from http://www.indiana.edu/~knotinfo/ *)
  
  BeginPackage["KnotTheory`IndianaData`", {"KnotTheory`"}]
- Message[KnotTheory::loading, "IndianaData`"]
+ Echo[KnotTheory::loading, "IndianaData`"]
  
  {BraidIndex, BridgeIndex, NakanishiIndex, SuperBridgeIndex, SymmetryType, ThreeGenus, UnknottingNumber}
 

@@ -1,5 +1,5 @@
 BeginPackage["KnotTheory`A2Invariant4TorusKnots`", {"KnotTheory`"}]
-Message[KnotTheory::loading, "A2Invariant4TorusKnots`"]
+Echo[KnotTheory::loading, "A2Invariant4TorusKnots`"]
 
 Begin["`Private`"]
 

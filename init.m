@@ -24,7 +24,7 @@ location on the host computer. It can be reset by the user.
 
 CreditMessage::usage = "CreditMessage[cm] is used to print the string cm as a 'credit message'. Every credit message is printed at most once."
 
-KnotTheory::credits = "`1`";
+KnotTheory::credits = "";
 
 Begin["`System`"]
 
@@ -50,7 +50,7 @@ KnotTheoryVersionString[] = StringJoin[
 
 KnotTheoryDirectory[] = (
   "AbsoluteFileName" /. Flatten[FileInformation[FileNameJoin[{#,"KnotTheory"}]] & /@ ($Path /. "." -> Directory[])]
-
+(*  $KnotTheoryDirectory*)
 )
 
 (* might be dangerous if KnotTheoryDirectory[] is somehow incorrect! *)
@@ -70,12 +70,12 @@ KnotTheoryWelcomeMessage[] = StringJoin[
   ".\nRead more at http://katlas.org/wiki/KnotTheory."
 ]
 
-Print[KnotTheoryWelcomeMessage[]]
+(*Print[KnotTheoryWelcomeMessage[]]*)
 
 CreditMessage[cm_String] := Module[
   {l},
   l=Length[$MessageList];
-  Message[KnotTheory::credits, cm];
+  Echo[KnotTheory::credits, cm];
   If[Length[$MessageList] > l, CreditMessage[cm] = Null];
 ]
 
@@ -205,7 +205,7 @@ ConnectedSum::usage = "
   K2 (ConnectedSum may not work with links).
 "
 
-KnotTheory::loading = "Loading precomputed data in `1`."
+KnotTheory::loading = "Loading precomputed data."
 
 (* Lightly documented features: *)
 
@@ -1656,7 +1656,7 @@ DT4Knots[n_, t_] /; (12<=n<=16) := DT4Knots[n, t] = Module[
   {ts, fn, f},
   ts = t /. {Alternating -> "A", NonAlternating -> "N"};
   fn = "KnotTheory/"<>ToString[n]<>ts<>".dts";
-  Message[KnotTheory::loading, fn];
+  Echo[KnotTheory::loading, fn];
   Import[fn, "Lines"]
 ]
 

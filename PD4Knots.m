@@ -1,5 +1,5 @@
 BeginPackage["KnotTheory`PD4Knots`", {"KnotTheory`"}]
-Message[KnotTheory::loading, "PD4Knots`"]
+Echo[KnotTheory::loading, "PD4Knots`"]
 
 PD[Knot[0,1]]=
  PD[Loop[1]]

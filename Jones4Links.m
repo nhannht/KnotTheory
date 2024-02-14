@@ -1,5 +1,5 @@
 BeginPackage["KnotTheory`Jones4Links`", {"KnotTheory`"}]
-Message[KnotTheory::loading, "Jones4Links`"]
+Echo[KnotTheory::loading, "Jones4Links`"]
 
 Begin["`Private`"]
 
