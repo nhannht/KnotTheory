@@ -1,5 +1,5 @@
 BeginPackage["KnotTheory`PD4Links`", {"KnotTheory`"}]
-Message[KnotTheory::loading, "PD4Links`"]
+Echo[KnotTheory::loading, "PD4Links`"]
 
 PD[Link[2,Alternating,1]]=
  PD[X[4, 1, 3, 2], X[2, 3, 1, 4]]

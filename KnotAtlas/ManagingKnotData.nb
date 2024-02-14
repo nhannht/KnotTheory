@@ -948,7 +948,7 @@ pre-existing file if appropriate.\>"];
           Return[$Failed]]; \[IndentingNewLine]WriteString[
           filename, \[IndentingNewLine]"\<BeginPackage[\"KnotTheory`\>" <> 
             datasetname <> "\<`\",{\"KnotTheory`\"}]\n\>" \
-<> \[IndentingNewLine]"\<Message[KnotTheory::loading, \"\>" <> 
+<> \[IndentingNewLine]"\<Echo[KnotTheory::loading, \"\>" <>
             datasetname <> "\<`\"]\n\>" <> 
             StoreInvariants[
               RetrieveInvariants[invariants, 

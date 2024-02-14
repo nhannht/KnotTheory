@@ -1,5 +1,5 @@
 BeginPackage["KnotTheory`QuantumInvariants4Knots`",{"KnotTheory`"}]
-Message[KnotTheory::loading, "QuantumInvariants4Knots`"]
+Echo[KnotTheory::loading, "QuantumInvariants4Knots`"]
 #[[1]][#[[2]],#[[3]]]&/@ {
 {(QuantumKnotInvariant[Subscript[A, 1], Irrep[Subscript[A, 1]][{1}]][#1] = #2; ) & , Knot[3, 1], q + q^3 + q^5 - q^9}
 {(QuantumKnotInvariant[Subscript[A, 1], Irrep[Subscript[A, 1]][{1}]][#1] = #2; ) & , Knot[4, 1], q^(-5) + q^5}

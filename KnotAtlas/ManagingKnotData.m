@@ -585,7 +585,7 @@ CreateDataPackage[datasetname_String,invariants:{__String},knotset_List]:=
       "BeginPackage[\"KnotTheory`"<>datasetname<>"`\",{\"KnotTheory`\"}]\n"<>
 
         
-        "Message[KnotTheory::loading, \""<>datasetname<>"`\"]\n"<>
+        "Echo[KnotTheory::loading, \""<>datasetname<>"`\"]\n"<>
         StoreInvariants[RetrieveInvariants[invariants,knotset,"KnotAtlas"],
           "KnotTheoryInputString"]<>
         "\nEndPackage[]"
