@@ -1,0 +1,33 @@
+name: build knowledgebase
+on:
+  push:
+    branches:
+      - nhannht
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: set up npm
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: clone nhannht/hortus
+        run: git clone https://github.com/nhannht/hortus
+      - name: start build
+        run: |
+          cd hortus
+          rm content/* -rf
+          npm install
+          cp ../knowledgebase/* ./content/
+          npx quartz build
+          cd ..
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./hortus/public
+          user_name: nhannht
+          user_email: nhanclassroom@gmail.com
