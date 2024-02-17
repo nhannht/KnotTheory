@@ -22,7 +22,7 @@ jobs:
           cd knowledgebase-template
           rm content/* -rf
           npm install
-          cp ../KnotTheoryKnowledgebase/* ./content/
+          cp ../KnotTheoryKnowledgebase/* ./content/ -rf
           sed -i 's/%%title%%/🪴🌴🌹 KnotTheory/g' ./quartz.config.ts
           sed -i 's/%%baseUrl%%/nhannht.github.io\/KnotTheory/g' ./quartz.config.ts
           
