@@ -1,2 +1,2 @@
 - [[Install]]
-- [[Using]]
+- Basic intro [[basic.pdf]]

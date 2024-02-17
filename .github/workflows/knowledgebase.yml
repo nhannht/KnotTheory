@@ -16,14 +16,15 @@ jobs:
           node-version: '20'
 
       - name: clone nhannht/hortus
-        run: git clone https://github.com/nhannht/hortus
+        run: git clone https://github.com/nhannht/knowledgebase-template
       - name: start build
         run: |
           cd hortus
           rm content/* -rf
           npm install
           cp ../KnotTheoryKnowledgebase/* ./content/
-          sed -i 's/pageTitle: \"🪴🌴🌹 Nhannht hortus\"/pageTitle: \"🪴🌴🌹 KnotTheory knowledgebase\"/g' ./quartz.config.ts
+          sed -i 's/%%title%%/🪴🌴🌹 KnotTheory/g' ./quartz.config.ts
+          sed -i 's/%%baseUrl%%/nhannht.github.io\/KnotTheory/g' ./quartz.config.ts
           
           npx quartz build
           cd ..
@@ -31,6 +32,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./hortus/public
+          publish_dir: ./knowledgebase-template/public
           user_name: nhannht
           user_email: nhanclassroom@gmail.com

@@ -13,13 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Install.md",
+                "file": "index.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "5649186e9ff4d917",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "index.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Install.md",
+                "file": "index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Install.md",
+                "file": "index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Install.md"
+                "file": "index.md"
               }
             }
           }
@@ -146,10 +159,16 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "1771d463aa1dee9f",
+  "active": "5649186e9ff4d917",
   "lastOpenFiles": [
-    "quartz.config.ts",
+    "basic.pdf",
+    "notebooks/basic.pdf",
     "index.md",
-    "Install.md"
+    "Using.md",
+    "basic.nb",
+    "notebooks",
+    "New Folder",
+    "Install.md",
+    "quartz.config.ts"
   ]
 }
