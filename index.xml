@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
     <channel>
-      <title>🪴🌴🌹 KnotTheory knowledgebase</title>
-      <link>https://hortus-von-nhannht.vercel.app</link>
-      <description>Last 10 notes on 🪴🌴🌹 KnotTheory knowledgebase</description>
+      <title>🪴🌴🌹 KnotTheory</title>
+      <link>https://nhannht.github.io/KnotTheory</link>
+      <description>Last 10 notes on 🪴🌴🌹 KnotTheory</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
     <title>Install</title>
-    <link>https://hortus-von-nhannht.vercel.app/Install</link>
-    <guid>https://hortus-von-nhannht.vercel.app/Install</guid>
+    <link>https://nhannht.github.io/KnotTheory/Install</link>
+    <guid>https://nhannht.github.io/KnotTheory/Install</guid>
     <description> Copy/Clone this package to {$UserBaseDirectory}/Autoload Start Mathematica or restart the kernel Tip You can restart the kernel by using Quit[] and eval any cells .</description>
-    <pubDate>Sat, 17 Feb 2024 10:26:43 GMT</pubDate>
+    <pubDate>Sat, 17 Feb 2024 18:20:43 GMT</pubDate>
+  </item><item>
+    <title>Using</title>
+    <link>https://nhannht.github.io/KnotTheory/Using</link>
+    <guid>https://nhannht.github.io/KnotTheory/Using</guid>
+    <description></description>
+    <pubDate>Sat, 17 Feb 2024 18:20:43 GMT</pubDate>
   </item><item>
     <title>index</title>
-    <link>https://hortus-von-nhannht.vercel.app/</link>
-    <guid>https://hortus-von-nhannht.vercel.app/</guid>
-    <description> Install Using .</description>
-    <pubDate>Sat, 17 Feb 2024 10:26:43 GMT</pubDate>
+    <link>https://nhannht.github.io/KnotTheory/</link>
+    <guid>https://nhannht.github.io/KnotTheory/</guid>
+    <description> Install Basic intro basic.pdf .</description>
+    <pubDate>Sat, 17 Feb 2024 18:20:43 GMT</pubDate>
   </item>
     </channel>
   </rss>
