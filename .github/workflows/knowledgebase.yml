@@ -19,7 +19,7 @@ jobs:
         run: git clone https://github.com/nhannht/knowledgebase-template
       - name: start build
         run: |
-          cd hortus
+          cd knowledgebase-template
           rm content/* -rf
           npm install
           cp ../KnotTheoryKnowledgebase/* ./content/
