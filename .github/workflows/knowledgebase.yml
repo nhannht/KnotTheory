@@ -21,7 +21,7 @@ jobs:
           cd hortus
           rm content/* -rf
           npm install
-          cp ../KnotTheoryKnowledgebase/* ./content/
+          cp ../knowledgebase/* ./content/
           npx quartz build
           cd ..
       - name: deploy
