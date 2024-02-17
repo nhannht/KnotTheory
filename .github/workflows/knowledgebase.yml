@@ -23,6 +23,8 @@ jobs:
           rm content/* -rf
           npm install
           cp ../KnotTheoryKnowledgebase/* ./content/
+          sed -i 's/pageTitle: \"🪴🌴🌹 Nhannht hortus\"/pageTitle: \"🪴🌴🌹 KnotTheory knowledgebase\"/g' ./quartz.config.ts
+          
           npx quartz build
           cd ..
       - name: deploy
