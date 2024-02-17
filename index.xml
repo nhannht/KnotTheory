@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+      <title>🪴🌴🌹 Nhannht hortus</title>
+      <link>https://hortus-von-nhannht.vercel.app</link>
+      <description>Last 10 notes on 🪴🌴🌹 Nhannht hortus</description>
+      <generator>Quartz -- quartz.jzhao.xyz</generator>
+      <item>
+    <title>Install</title>
+    <link>https://hortus-von-nhannht.vercel.app/Install</link>
+    <guid>https://hortus-von-nhannht.vercel.app/Install</guid>
+    <description> Copy/Clone this package to {$UserBaseDirectory}/Autoload Start Mathematica or restart the kernel Tip You can restart the kernel by using Quit[] and eval any cells .</description>
+    <pubDate>Sat, 17 Feb 2024 09:21:15 GMT</pubDate>
+  </item><item>
+    <title>index</title>
+    <link>https://hortus-von-nhannht.vercel.app/</link>
+    <guid>https://hortus-von-nhannht.vercel.app/</guid>
+    <description> Install Using .</description>
+    <pubDate>Sat, 17 Feb 2024 09:21:15 GMT</pubDate>
+  </item>
+    </channel>
+  </rss>
